@@ -134,7 +134,8 @@ as described above).
 
 =item * C<< had_no_warnings(<optional test name>) >>
 
-Tests whether there have been any (unallowed) warnings so far.  It is run
+Tests whether there have been any warnings so far, not preceded by an
+C<allowing_warnings> call.  It is run
 automatically at the end of all tests, but can also be called manually at any
 time, as often as desired.
 
@@ -142,7 +143,7 @@ time, as often as desired.
 
 All functions are also available by importing the tag C<:all>.
 
-=head1 TODO (i.e. FUTURE FEATURES, MAYBE)
+=head1 TO DO (i.e. FUTURE FEATURES, MAYBE)
 
 =over
 
