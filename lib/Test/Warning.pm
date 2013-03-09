@@ -1,8 +1,7 @@
-package Test::Warning;
-# ABSTRACT: ...
-
 use strict;
 use warnings;
+package Test::Warning;
+# ABSTRACT: ...
 
 use Exporter 'import';
 use Test::Builder;
