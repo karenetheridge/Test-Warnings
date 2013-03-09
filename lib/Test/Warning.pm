@@ -52,7 +52,12 @@ if ($Test::Builder::VERSION >= 0.88)
 }
 
 END {
-    if (not $done_testing_called)
+    if (not $done_testing_called
+        # skip this if there is no plan and no tests were run (e.g.
+        # compilation tests of this module!)
+        and (_builder->expected_tests or ref(_builder) ne 'Test::Builder')
+        and _builder->current_test > 0
+    )
     {
         local $Test::Builder::Level = $Test::Builder::Level + 1;
         had_no_warnings('no (unexpected) warnings (via END block)');
