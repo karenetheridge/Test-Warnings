@@ -33,20 +33,23 @@ $SIG{__WARN__} = sub {
     $forbidden_warnings_found++ if not $warnings_allowed;
 };
 
-# monkeypatch Test::Builder::done_testing:
-# check for any forbidden warnings, and record that we have done so
-# so we do not check again via END
-Class::Method::Modifiers::install_modifier('Test::Builder',
-    before => done_testing => sub {
-        # only do this at the end of all tests, not at the end of a subtest
-        if (not _builder()->parent)
-        {
-            local $Test::Builder::Level = $Test::Builder::Level + 3;
-            had_no_warnings('no (unexpected) warnings (via done_testing)');
-            $done_testing_called = 1;
-        }
-    },
-);
+if ($Test::Builder::VERSION >= 0.88)
+{
+    # monkeypatch Test::Builder::done_testing:
+    # check for any forbidden warnings, and record that we have done so
+    # so we do not check again via END
+    Class::Method::Modifiers::install_modifier('Test::Builder',
+        before => done_testing => sub {
+            # only do this at the end of all tests, not at the end of a subtest
+            if (not _builder()->parent)
+            {
+                local $Test::Builder::Level = $Test::Builder::Level + 3;
+                had_no_warnings('no (unexpected) warnings (via done_testing)');
+                $done_testing_called = 1;
+            }
+        },
+    );
+}
 
 END {
     if (not $done_testing_called)
