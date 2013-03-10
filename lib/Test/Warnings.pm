@@ -40,7 +40,14 @@ sub _builder(;$)
 $SIG{__WARN__} = sub {
     my $msg = shift;
     warn $msg;
-    $forbidden_warnings_found++ if not $warnings_allowed;
+
+    if (not $warnings_allowed
+        or (ref $warnings_allowed eq 'ARRAY'
+            and not grep { __is_regexp($_) and $msg =~ $_ } @$warnings_allowed)
+    )
+    {
+        $forbidden_warnings_found++;
+    }
 };
 
 if ($Test::Builder::VERSION >= 0.88)
@@ -75,19 +82,39 @@ END {
     }
 }
 
-# setter
+# setter - takes no arg, true, false, or list of patterns
 sub allow_warnings(;$)
 {
-    $warnings_allowed = @_ || defined $_[0] ? $_[0] : 1;
+    # no args - treat as allow_warnings(true)
+    return $warnings_allowed = 1 if not @_;
+
+    if (my @patterns = grep { __is_regexp($_) } @_)
+    {
+        $warnings_allowed = [ @patterns ];
+        return @patterns;
+    }
+
+    # simple case - boolean argument
+    $warnings_allowed = $_[0];
 }
 
-# getter
-sub allowing_warnings() { $warnings_allowed }
+# getter - returns true, false, or list of patterns
+sub allowing_warnings()
+{
+    ref $warnings_allowed eq 'ARRAY'
+        ? @$warnings_allowed
+        : $warnings_allowed
+}
 
 # call at any time to assert no (unexpected) warnings so far
 sub had_no_warnings(;$)
 {
     _builder()->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+}
+
+sub __is_regexp
+{
+    $^V < 5.009005 ? ref(shift) eq 'Regexp' : re::is_regexp(shift);
 }
 
 1;
@@ -141,16 +168,24 @@ can also get all of them by importing the tag C<:all>):
 
 =over
 
-=item * C<< allow_warnings([bool]) >>
+=item * C<< allow_warnings([bool | list]) >>
 
 When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
-result in a test failure.  Initial value is C<false>.
+result in a test failure.
+
+When passed one or more patterns (of the form qr/.../), warnings matching this
+pattern(s) will not cause subsequent C<had_no_warnings> tests to fail.
+Calling this function twice will overwrite previous values (to add more, do
+C<< allow_warnings( allowing_warnings, qr/.../, qr/.../) >>).
+
+Initial value is C<false>.
 
 =item * C<allowing_warnings>
 
 Returns whether we are currently allowing warnings (set by C<allow_warnings>
-as described above).
+as described above): returns a boolean (if all warnings are allowed or
+disallowed), or returns the list of regexes of warnings that will be allowed.
 
 =item * C<< had_no_warnings(<optional test name>) >>
 
