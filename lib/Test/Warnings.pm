@@ -179,4 +179,6 @@ L<Test::NoWarnings>
 
 L<Test::FailWarnings>
 
+L<blogs.perl.org: YANWT|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
+
 =cut
