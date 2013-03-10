@@ -17,6 +17,6 @@
 /nytprof*
 /inc/
 .*.sw[a-z]
-/Test-Warning-
+/Test-Warnings-*
 /todo.txt
 /todo/

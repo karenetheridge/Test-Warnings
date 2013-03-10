@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::More;
-use Test::Warning;
+use Test::Warnings;
 
 # testing our alteration of done_testing is a bit tricky, as (duh) once we've
 # called done_testing, we're done and cannot emit any further TAP.  Therefore,

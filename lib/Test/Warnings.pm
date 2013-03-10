@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-package Test::Warning;
+package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 
 use Exporter 'import';
@@ -87,7 +87,7 @@ __END__
 =head1 SYNOPSIS
 
     use Test::More;
-    use Test::Warning;
+    use Test::Warnings;
 
     pass('yay!');
     done_testing;
@@ -121,7 +121,7 @@ It is actually equivalent to:
 
 as warnings are still printed normally as they occur.  You are safe, and
 enthusiastically encouraged, to perform a global search-replace of the above
-with C<use Test::Warning;> whether or not your tests have a plan.
+with C<use Test::Warnings;> whether or not your tests have a plan.
 
 =head1 FUNCTIONS
 

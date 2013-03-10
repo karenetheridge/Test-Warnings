@@ -3,11 +3,11 @@ use warnings;
 
 use Test::More;
 
-# if all we do is load Test::Warning and exit, we should not add a test at END
+# if all we do is load Test::Warnings and exit, we should not add a test at END
 # time. For one thing, this lets this distribution generate a compilation test
 # without trying to run a plan-less test.
 
-# last in, first out: Test::Warning's END will run after this one
+# last in, first out: Test::Warnings's END will run after this one
 END {
     is(Test::Builder->new->current_test, 0, 'no tests run during END');
 
@@ -15,5 +15,5 @@ END {
     done_testing;
 }
 
-use Test::Warning;
+use Test::Warnings;
 

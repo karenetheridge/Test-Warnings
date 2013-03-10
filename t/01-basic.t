@@ -8,11 +8,11 @@ END {
     final_tests();
 }
 
-use Test::Warning ':all';
+use Test::Warnings ':all';
 
 # we swap out our $tb for Test::Tester's, so we can also test the results
 # of the END block...
-Test::Warning::_builder(my $capture = Test::Tester::capture());
+Test::Warnings::_builder(my $capture = Test::Tester::capture());
 
 is(1, 1, 'passing test');
 

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Test::More;
-use Test::Warning;
+use Test::Warnings;
 
 pass('yay!');
 

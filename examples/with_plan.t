@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::More tests => 8;
-use Test::Warning ':all';
+use Test::Warnings ':all';
 
 is(1, 1, 'passing test');
 
