@@ -3,7 +3,7 @@ use warnings;
 package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 
-use Exporter 'import';
+use parent 'Exporter';
 use Test::Builder;
 use Class::Method::Modifiers;
 
@@ -13,6 +13,16 @@ our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 my $warnings_allowed;
 my $forbidden_warnings_found;
 my $done_testing_called;
+my $no_end_test;
+
+sub import
+{
+    # END block will check for this status
+    my @symbols = grep { $_ ne ':no_end_test' } @_;
+    $no_end_test = (@symbols != @_);
+
+    __PACKAGE__->export_to_level(1, @symbols);
+}
 
 # for testing this module only!
 my $tb;
@@ -52,7 +62,8 @@ if ($Test::Builder::VERSION >= 0.88)
 }
 
 END {
-    if (not $done_testing_called
+    if (not $no_end_test
+        and not $done_testing_called
         # skip this if there is no plan and no tests were run (e.g.
         # compilation tests of this module!)
         and (_builder->expected_tests or ref(_builder) ne 'Test::Builder')
@@ -125,7 +136,8 @@ with C<use Test::Warnings;> whether or not your tests have a plan.
 
 =head1 FUNCTIONS
 
-The following functions are available for import (not included by default):
+The following functions are available for import (not included by default; you
+can also get all of them by importing the tag C<:all>):
 
 =over
 
@@ -149,7 +161,15 @@ time, as often as desired.
 
 =back
 
-All functions are also available by importing the tag C<:all>.
+=head1 OTHER OPTIONS
+
+=over
+
+=item * C<:all> - Imports all functions listed above
+
+=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
+
+=back
 
 =head1 TO DO (i.e. FUTURE FEATURES, MAYBE)
 
