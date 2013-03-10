@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Tester 0.108;
-use Test::More tests => 19;     # avoid our done_testing hook
+use Test::More tests => 20;     # avoid our done_testing hook
 
 END {
     final_tests();
@@ -24,6 +24,9 @@ had_no_warnings;            # TEST 1
 allow_warnings(0);
 ok(!allowing_warnings, 'warnings are not allowed again');
 warn 'oh noes, something warned!';
+
+allow_warnings(undef);
+ok(!allowing_warnings, 'warnings are still not allowed');
 
 had_no_warnings;            # TEST 2
 
