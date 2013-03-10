@@ -78,7 +78,7 @@ END {
 # setter
 sub allow_warnings(;$)
 {
-    $warnings_allowed = defined $_[0] ? $_[0] : 1;
+    $warnings_allowed = @_ || defined $_[0] ? $_[0] : 1;
 }
 
 # getter
