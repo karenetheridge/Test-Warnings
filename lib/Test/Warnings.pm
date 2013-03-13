@@ -43,7 +43,7 @@ $SIG{__WARN__} = sub {
     $forbidden_warnings_found++ if not $warnings_allowed;
 };
 
-if ($Test::Builder::VERSION >= 0.88)
+if (Test::Builder->can('done_testing'))
 {
     # monkeypatch Test::Builder::done_testing:
     # check for any forbidden warnings, and record that we have done so
