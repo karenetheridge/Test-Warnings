@@ -5,7 +5,7 @@ package Test::Warnings;
 
 use parent 'Exporter';
 use Test::Builder;
-use Class::Method::Modifiers;
+use Class::Method::Modifiers ();
 
 our @EXPORT_OK = qw(allow_warnings allowing_warnings had_no_warnings);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
