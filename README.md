@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.001
+version 0.002
 
 # SYNOPSIS
 
@@ -47,15 +47,16 @@ with `use Test::Warnings;` whether or not your tests have a plan.
 
 # FUNCTIONS
 
-The following functions are available for import (not included by default):
+The following functions are available for import (not included by default; you
+can also get all of them by importing the tag `:all`):
 
-- `allow_warnings([bool])`
+- `allow_warnings([bool])` - EXPERIMENTAL - MAY BE REMOVED
 
     When passed a true value, or no value at all, subsequent warnings will not
     result in a test failure; when passed a false value, subsequent warnings will
     result in a test failure.  Initial value is `false`.
 
-- `allowing_warnings`
+- `allowing_warnings` - EXPERIMENTAL - MAY BE REMOVED
 
     Returns whether we are currently allowing warnings (set by `allow_warnings`
     as described above).
@@ -67,7 +68,10 @@ The following functions are available for import (not included by default):
     automatically at the end of all tests, but can also be called manually at any
     time, as often as desired.
 
-All functions are also available by importing the tag `:all`.
+# OTHER OPTIONS
+
+- `:all` - Imports all functions listed above
+- `:no_end_test` - Disables the addition of a `had_no_warnings` test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
 
 # TO DO (i.e. FUTURE FEATURES, MAYBE)
 
@@ -82,7 +86,7 @@ the end of every subtest via `done_testing`.
 
 # SUPPORT
 
-Bugs may be submitted through [https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warning](https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warning).
+Bugs may be submitted through [https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings](https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings).
 I am also usually active on irc, as 'ether' at `irc.perl.org`.
 
 # SEE ALSO
@@ -90,6 +94,8 @@ I am also usually active on irc, as 'ether' at `irc.perl.org`.
 [Test::NoWarnings](http://search.cpan.org/perldoc?Test::NoWarnings)
 
 [Test::FailWarnings](http://search.cpan.org/perldoc?Test::FailWarnings)
+
+[blogs.perl.org: YANWT (Yet Another No-Warnings Tester)](http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html)
 
 # AUTHOR
 
