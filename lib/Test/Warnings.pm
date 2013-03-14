@@ -141,13 +141,13 @@ can also get all of them by importing the tag C<:all>):
 
 =over
 
-=item * C<< allow_warnings([bool]) >>
+=item * C<< allow_warnings([bool]) >> - EXPERIMENTAL - MAY BE REMOVED
 
 When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
 result in a test failure.  Initial value is C<false>.
 
-=item * C<allowing_warnings>
+=item * C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
 
 Returns whether we are currently allowing warnings (set by C<allow_warnings>
 as described above).
