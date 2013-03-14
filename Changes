@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          Releasing as non-TRIAL for greater visibility.
           - ':no_end_test' option added
           - test added showing that we play nicely with 'skip_all'
 
