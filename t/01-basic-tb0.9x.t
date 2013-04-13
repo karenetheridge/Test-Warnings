@@ -1,11 +1,20 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::Tester 0.108;
-use Test::More tests => 19;
+# basic tests, using Test::Builder 0.98 or earlier.
 
+use Test::Tester 0.108;
+use Test::More;
+
+plan skip_all => 'These tests are only for Test::Builder 0.9x'
+    if Test::Builder->VERSION >= 1.005;
+
+plan tests => 19;     # avoid our done_testing hook
+
+# define our END block first, so it is run last (after TW's END)
 END {
-    final_tests();
+    final_tests()
+        if Test::Builder->VERSION < 1.005;
 }
 
 use Test::Warnings ':all';
