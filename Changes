@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.003     2013-04-13 14:07:58 PDT-0700 (Karen Etheridge)
           - Test suite (and code) fixed to work in the presence of
             Test::Builder 1.005+ (TB2)
 
