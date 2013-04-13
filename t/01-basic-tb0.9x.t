@@ -1,11 +1,20 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::Tester 0.108;
-use Test::More tests => 20;     # avoid our done_testing hook
+# basic tests, using Test::Builder 0.98 or earlier.
 
+use Test::Tester 0.108;
+use Test::More;
+
+plan skip_all => 'These tests are only for Test::Builder 0.9x'
+    if Test::Builder->VERSION >= 1.005;
+
+plan tests => 19;     # avoid our done_testing hook
+
+# define our END block first, so it is run last (after TW's END)
 END {
-    final_tests();
+    final_tests()
+        if Test::Builder->VERSION < 1.005;
 }
 
 use Test::Warnings ':all';
@@ -14,12 +23,10 @@ use Test::Warnings ':all';
 # of the END block...
 Test::Warnings::_builder(my $capture = Test::Tester::capture());
 
-is(1, 1, 'passing test');
-
 allow_warnings;
 ok(allowing_warnings, 'warnings are now allowed');
 warn 'this warning will not cause a failure';
-had_no_warnings;            # TEST 1
+had_no_warnings;                                        # TEST 1
 
 allow_warnings(0);
 ok(!allowing_warnings, 'warnings are not allowed again');
@@ -28,7 +35,7 @@ warn 'oh noes, something warned!';
 allow_warnings(undef);
 ok(!allowing_warnings, 'warnings are still not allowed');
 
-had_no_warnings;            # TEST 2
+had_no_warnings('no warnings, with a custom name');     # TEST 2
 
 # this is run in the END block
 sub final_tests
@@ -48,7 +55,7 @@ sub final_tests
             {   # TEST 2
                 actual_ok => 0,
                 ok => 0,
-                name => 'no (unexpected) warnings',
+                name => 'no warnings, with a custom name',
                 type => '',
                 diag => '',
                 depth => undef, # not testable in END blocks
