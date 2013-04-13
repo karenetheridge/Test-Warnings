@@ -2,7 +2,7 @@ use strict;
 use warnings FATAL => 'all';
 
 use Test::Tester 0.108;
-use Test::More tests => 20;     # avoid our done_testing hook
+use Test::More tests => 19;
 
 END {
     final_tests();
@@ -13,8 +13,6 @@ use Test::Warnings ':all';
 # we swap out our $tb for Test::Tester's, so we can also test the results
 # of the END block...
 Test::Warnings::_builder(my $capture = Test::Tester::capture());
-
-is(1, 1, 'passing test');
 
 allow_warnings;
 ok(allowing_warnings, 'warnings are now allowed');
