@@ -37,6 +37,8 @@ ok(!allowing_warnings, 'warnings are still not allowed');
 
 had_no_warnings('no warnings, with a custom name');     # TEST 2
 
+# now we "END"...
+
 # this is run in the END block
 sub final_tests
 {
