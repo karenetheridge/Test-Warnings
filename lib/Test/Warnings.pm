@@ -182,6 +182,8 @@ time, as often as desired.
 L<Test::Warn>-like functionality for testing the content of warnings, but
 closer to a L<Test::Fatal>-like syntax
 
+=for stopwords subtest subtests
+
 =item * more sophisticated handling in subtests - if we save some state on the
 L<Test::Builder> object itself, we can allow warnings in a subtest and then
 the state will revert when the subtest ends, as well as check for warnings at
@@ -191,10 +193,14 @@ the end of every subtest via C<done_testing>.
 
 =head1 SUPPORT
 
+=for stopwords irc
+
 Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>.
 I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =head1 SEE ALSO
+
+=for stopwords YANWT
 
 L<Test::NoWarnings>
 
