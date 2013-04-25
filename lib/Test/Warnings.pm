@@ -7,7 +7,7 @@ use parent 'Exporter';
 use Test::Builder;
 use Class::Method::Modifiers ();
 
-our @EXPORT_OK = qw(allow_warnings allowing_warnings had_no_warnings);
+our @EXPORT_OK = qw(allow_warnings allowing_warnings had_no_warnings warning warnings);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
 my $warnings_allowed;
@@ -91,6 +91,19 @@ sub had_no_warnings(;$)
     _builder()->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
 }
 
+sub warning(&) {
+	my @warnings = &warnings(@_);
+	return @warnings == 1 ? $warnings[0] : \@warnings;
+}
+
+sub warnings(&) {
+	my $sub = shift;
+	my @warnings;
+	local $SIG{__WARN__} = sub { push @warnings, $_[0] };
+	$sub->();
+	return @warnings;
+}
+
 1;
 __END__
 
@@ -102,6 +115,7 @@ __END__
     use Test::Warnings;
 
     pass('yay!');
+    is(warning { warn "Foo\n" }, "Foo\n", 'Warned Foo');
     done_testing;
 
 emits TAP:
