@@ -51,7 +51,7 @@ if (Test::Builder->can('done_testing'))
     Class::Method::Modifiers::install_modifier('Test::Builder',
         before => done_testing => sub {
             # only do this at the end of all tests, not at the end of a subtest
-            my $builder = _builder();
+            my $builder = _builder;
             my $in_subtest_sub = $builder->can('in_subtest');
             if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
             {
@@ -88,7 +88,7 @@ sub allowing_warnings() { $warnings_allowed }
 # call at any time to assert no (unexpected) warnings so far
 sub had_no_warnings(;$)
 {
-    _builder()->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+    _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
 }
 
 1;
