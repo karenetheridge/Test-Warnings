@@ -219,4 +219,7 @@ L<Test::FailWarnings>
 
 L<blogs.perl.org: YANWT (Yet Another No-Warnings Tester)|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
 
+L<strictures> - which makes all warnings fatal in tests, hence lessening
+the need for special warning testing
+
 =cut
