@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.003
+version 0.004
 
 # SYNOPSIS
 
@@ -56,6 +56,9 @@ can also get all of them by importing the tag `:all`):
     result in a test failure; when passed a false value, subsequent warnings will
     result in a test failure.  Initial value is `false`.
 
+    When warnings are allowed, any warnings will instead be emitted via
+    [Test::Builder::note](http://search.cpan.org/perldoc?Test::Builder#Output).
+
 - `allowing_warnings` - EXPERIMENTAL - MAY BE REMOVED
 
     Returns whether we are currently allowing warnings (set by `allow_warnings`
@@ -73,7 +76,25 @@ can also get all of them by importing the tag `:all`):
 - `:all` - Imports all functions listed above
 - `:no_end_test` - Disables the addition of a `had_no_warnings` test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
 
-# TO DO (i.e. FUTURE FEATURES, MAYBE)
+# CAVEATS
+
+Sometimes new warnings can appear in Perl that should __not__ block
+installation -- for example, smartmatch was recently deprecated in
+perl 5.17.11, so now any distribution that uses smartmatch and also
+tests for warnings cannot be installed under 5.18.0.  You might want to
+consider only making warnings fail tests in an author environment -- you can
+do this with the [if](http://search.cpan.org/perldoc?if) pragma:
+
+    use if $ENV{AUTHOR_TESTING} || $ENV{RELEASE_TESTING}, 'Test::Warnings';
+
+In future versions of this module, when interfaces are added to test the
+content of warnings, there will likely be additional sugar available to
+indicate that warnings should be checked only in author tests (or TODO when
+not in author testing), but will still provide exported subs.  Comments are
+enthusiastically solicited - drop me an email, write up an RT ticket, or come
+by `#perl-qa` on irc!
+
+# TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 - `allow_warnings(qr/.../)` - allow some warnings and not others
 - `warning_is, warning_like etc...` - inclusion of some
@@ -83,6 +104,8 @@ closer to a [Test::Fatal](http://search.cpan.org/perldoc?Test::Fatal)\-like synt
 [Test::Builder](http://search.cpan.org/perldoc?Test::Builder) object itself, we can allow warnings in a subtest and then
 the state will revert when the subtest ends, as well as check for warnings at
 the end of every subtest via `done_testing`.
+- sugar for making failures TODO when testing outside an author
+environment
 
 # SUPPORT
 
@@ -96,6 +119,9 @@ I am also usually active on irc, as 'ether' at `irc.perl.org`.
 [Test::FailWarnings](http://search.cpan.org/perldoc?Test::FailWarnings)
 
 [blogs.perl.org: YANWT (Yet Another No-Warnings Tester)](http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html)
+
+[strictures](http://search.cpan.org/perldoc?strictures) - which makes all warnings fatal in tests, hence lessening
+the need for special warning testing
 
 # AUTHOR
 
