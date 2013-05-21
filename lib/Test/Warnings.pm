@@ -183,7 +183,27 @@ time, as often as desired.
 
 =back
 
-=head1 TO DO (i.e. FUTURE FEATURES, MAYBE)
+=head1 CAVEATS
+
+=for stopwords smartmatch TODO
+
+Sometimes new warnings can appear in Perl that should B<not> block
+installation -- for example, smartmatch was recently deprecated in
+perl 5.17.11, so now any distribution that uses smartmatch and also
+tests for warnings cannot be installed under 5.18.0.  You might want to
+consider only making warnings fail tests in an author environment -- you can
+do this with the L<if> pragma:
+
+    use if $ENV{AUTHOR_TESTING} || $ENV{RELEASE_TESTING}, 'Test::Warnings';
+
+In future versions of this module, when interfaces are added to test the
+content of warnings, there will likely be additional sugar available to
+indicate that warnings should be checked only in author tests (or TODO when
+not in author testing), but will still provide exported subs.  Comments are
+enthusiastically solicited - drop me an email, write up an RT ticket, or come
+by C<#perl-qa> on irc!
+
+=head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over
 
@@ -199,6 +219,9 @@ closer to a L<Test::Fatal>-like syntax
 L<Test::Builder> object itself, we can allow warnings in a subtest and then
 the state will revert when the subtest ends, as well as check for warnings at
 the end of every subtest via C<done_testing>.
+
+=item * sugar for making failures TODO when testing outside an author
+environment
 
 =back
 
