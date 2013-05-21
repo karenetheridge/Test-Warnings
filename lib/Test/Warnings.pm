@@ -39,8 +39,16 @@ sub _builder(;$)
 
 $SIG{__WARN__} = sub {
     my $msg = shift;
-    warn $msg;
-    $forbidden_warnings_found++ if not $warnings_allowed;
+
+    if ($warnings_allowed)
+    {
+        Test::Builder->new->note($msg);
+    }
+    else
+    {
+        warn $msg;
+        $forbidden_warnings_found++;
+    }
 };
 
 if (Test::Builder->can('done_testing'))
@@ -147,6 +155,9 @@ can also get all of them by importing the tag C<:all>):
 When passed a true value, or no value at all, subsequent warnings will not
 result in a test failure; when passed a false value, subsequent warnings will
 result in a test failure.  Initial value is C<false>.
+
+When warnings are allowed, any warnings will instead be emitted via
+L<Test::Builder::note|Test::Builder/Output>.
 
 =item * C<allowing_warnings> - EXPERIMENTAL - MAY BE REMOVED
 

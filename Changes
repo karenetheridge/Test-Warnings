@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - when allowing warnings (via allow_warnings()), messages are
+            emitted via note() rather than warn(), for less noisy output when
+            running in a harness
 
 0.003     2013-04-13 14:07:58 PDT-0700 (Karen Etheridge)
           - Test suite (and code) fixed to work in the presence of

@@ -20,7 +20,7 @@ END {
 use Test::Warnings ':all';
 
 # we swap out our $tb for Test::Tester's, so we can also test the results
-# of the END block...
+# of the END block... (although not all methods are supported!)
 Test::Warnings::_builder(my $capture = Test::Tester::capture());
 
 allow_warnings;
