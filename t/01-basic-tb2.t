@@ -3,8 +3,9 @@ use warnings FATAL => 'all';
 
 # basic tests, using Test::Builder 1.005/TB2.
 
+use Test::More;
+
 BEGIN {
-    use Test::More;
     plan skip_all => 'These tests are only for Test::Builder 1.005+'
         if Test::Builder->VERSION < 1.005;
 }
