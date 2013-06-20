@@ -3,9 +3,8 @@ use warnings;
 package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 
-use parent 'Exporter';
+use base 'Exporter';
 use Test::Builder;
-use Class::Method::Modifiers ();
 
 our @EXPORT_OK = qw(
     allow_warnings allowing_warnings
@@ -72,24 +71,27 @@ sub warning(&)
     return @warnings == 1 ? $warnings[0] : \@warnings;
 }
 
-if (Test::Builder->can('done_testing'))
 {
-    # monkeypatch Test::Builder::done_testing:
-    # check for any forbidden warnings, and record that we have done so
-    # so we do not check again via END
-    Class::Method::Modifiers::install_modifier('Test::Builder',
-        before => done_testing => sub {
-            # only do this at the end of all tests, not at the end of a subtest
-            my $builder = _builder;
-            my $in_subtest_sub = $builder->can('in_subtest');
-            if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
-            {
-                local $Test::Builder::Level = $Test::Builder::Level + 3;
-                had_no_warnings('no (unexpected) warnings (via done_testing)');
-                $done_testing_called = 1;
-            }
-        },
-    );
+    package #hide
+        Test::Warnings::Builder;
+
+    my $builder;
+    use base ref( $builder = Test::Warnings::_builder() );
+
+    sub done_testing {
+        my $self = shift;
+
+        my $in_subtest_sub = $self->can('in_subtest');
+        if (not ($in_subtest_sub ? $self->$in_subtest_sub : $self->parent))
+        {
+            local $Test::Builder::Level = $Test::Builder::Level + 3;
+            Test::Warnings::had_no_warnings('no (unexpected) warnings (via done_testing)');
+            $done_testing_called = 1;
+        }
+
+        $self->SUPER::done_testing(@_);
+    }
+    bless $builder;
 }
 
 END {
