@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.005     2013-06-20 12:18:42 PDT-0700 (Karen Etheridge)
           - new feature: warnings { code } and warning { code }, for capturing
             the contents of warnings for subsequent testing
 
