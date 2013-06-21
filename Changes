@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.006     2013-06-20 17:53:54 PDT-0700 (Karen Etheridge)
           - remove use of Class::Method::Modifiers
 
 0.005     2013-06-20 12:18:42 PDT-0700 (Karen Etheridge)
