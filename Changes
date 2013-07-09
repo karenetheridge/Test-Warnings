@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix subtest tests to work on Test::More before 0.95_01
+            (RT#86802)
 
 0.006     2013-06-20 17:53:54 PDT-0700 (Karen Etheridge)
           - remove use of Class::Method::Modifiers

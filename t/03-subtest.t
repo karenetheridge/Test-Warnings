@@ -20,7 +20,8 @@ my $had_no_warnings_called;
 
 subtest 'here is a subtest' => sub {
     pass('another passing test');
-    # done_testing automatically called here - but no test is added
+    # no test is added via the done_testing here
+    done_testing;
 };
 
 ok(!$had_no_warnings_called, 'had_no_warnings was not called via the subtest\'s done_testing');
