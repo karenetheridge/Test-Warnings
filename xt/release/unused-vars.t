@@ -1,5 +1,3 @@
-#!perl
-
 use Test::More 0.88;
 
 eval "use Test::Vars";
