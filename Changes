@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.007     2013-07-09 15:10:36 PDT-0700 (Karen Etheridge)
           - fix subtest tests to work on Test::More before 0.95_01
             (RT#86802)
 
