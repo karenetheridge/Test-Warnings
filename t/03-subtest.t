@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More;
+use Test::More 0.94;
 use Test::Warnings ':all';
 
 is(1, 1, 'passing test');

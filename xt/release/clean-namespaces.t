@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More;
+use Test::More 0.88;
 use Test::CleanNamespaces;
 
                     # we would like to just do:

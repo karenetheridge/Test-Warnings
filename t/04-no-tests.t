@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More 0.88;
 
 # if all we do is load Test::Warnings and exit, we should not add a test at END
 # time. For one thing, this lets this distribution generate a compilation test

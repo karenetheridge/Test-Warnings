@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More;
+use Test::More 0.88;
 use Test::Warnings;
 
 # testing our alteration of done_testing is a bit tricky, as (duh) once we've

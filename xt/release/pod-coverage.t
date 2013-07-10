@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
-use Test::More;
 
+use Test::More 0.94;
 use Test::Pod::Coverage 1.08;
 use Pod::Coverage::TrustPod;
 

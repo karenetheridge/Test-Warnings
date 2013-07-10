@@ -1,7 +1,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More;
+use Test::More 0.88;
 
 pass 'here is a passing test, to keep plan happy';
 
