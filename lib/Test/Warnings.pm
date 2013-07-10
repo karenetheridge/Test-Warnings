@@ -169,6 +169,9 @@ as warnings are still printed normally as they occur.  You are safe, and
 enthusiastically encouraged, to perform a global search-replace of the above
 with C<use Test::Warnings;> whether or not your tests have a plan.
 
+It can also be used as a replacement for L<Test::Warn>, if you wish to test
+the content of expected warnings; read on to find out how.
+
 =head1 FUNCTIONS
 
 The following functions are available for import (not included by default; you
