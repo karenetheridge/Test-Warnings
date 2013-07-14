@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - compile test updated, to hopefully fix mswin32 parsing issues
 
 0.007     2013-07-09 15:10:36 PDT-0700 (Karen Etheridge)
           - fix subtest tests to work on Test::More before 0.95_01
