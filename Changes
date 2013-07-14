@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
           - compile test updated, to hopefully fix mswin32 parsing issues
 
 0.007     2013-07-09 15:10:36 PDT-0700 (Karen Etheridge)

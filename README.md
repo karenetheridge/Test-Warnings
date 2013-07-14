@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.007
+version 0.008
 
 # SYNOPSIS
 
@@ -46,6 +46,9 @@ It is actually equivalent to:
 as warnings are still printed normally as they occur.  You are safe, and
 enthusiastically encouraged, to perform a global search-replace of the above
 with `use Test::Warnings;` whether or not your tests have a plan.
+
+It can also be used as a replacement for [Test::Warn](http://search.cpan.org/perldoc?Test::Warn), if you wish to test
+the content of expected warnings; read on to find out how.
 
 # FUNCTIONS
 
