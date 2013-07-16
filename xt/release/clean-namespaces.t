@@ -1,14 +1,9 @@
 use strict;
 use warnings FATAL => 'all';
 
-use Test::More 0.88;
+use Test::More 0.94;
 use Test::CleanNamespaces;
 
-                    # we would like to just do:
-#all_namespaces_clean();
-                    # ...but it also does: plan(@modules);
-                    # which is not compatible with our adding a test via END
-
-namespaces_clean(Test::CleanNamespaces->find_modules);
+subtest all_namespaces_clean => sub { all_namespaces_clean() };
 
 done_testing;
