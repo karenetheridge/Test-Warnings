@@ -134,14 +134,27 @@ __END__
     use Test::Warnings;
 
     pass('yay!');
-    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
     done_testing;
 
 emits TAP:
 
     ok 1 - yay!
+    ok 2 - no (unexpected) warnings (via done_testing)
+    1..2
+
+and:
+
+    use Test::More tests => 3;
+    use Test::Warnings 0.005 ':all';
+
+    pass('yay!');
+    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
+
+emits TAP:
+
+    ok 1 - yay!
     ok 2 - we warned
-    ok 3 - no (unexpected) warnings (via done_testing)
+    ok 3 - no (unexpected) warnings (via END block)
     1..3
 
 =head1 DESCRIPTION
