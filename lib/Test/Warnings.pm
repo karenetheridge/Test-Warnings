@@ -234,6 +234,33 @@ single warning produced, if there was one, or an arrayref otherwise -- which
 can be more convenient to use than C<warnings()> if you are expecting exactly
 one warning.
 
+However, you are advised to capture the result from C<warning()> into a temp
+variable so you can dump its value if it doesn't contain what you expect.
+e.g. with this test:
+
+    like(
+        warning { foo() },
+        qr/^this is a warning/,
+        'got a warning from foo()',
+    );
+
+if you get two warnings (or none) back instead of one, you'll get an
+arrayref, which will result in an unhelpful test failure message like:
+
+    #   Failed test 'got a warning from foo()'
+    #   at t/mytest.t line 10.
+    #                   'ARRAY(0xdeadbeef)'
+    #     doesn't match '(?^:^this is a warning)'
+
+So instead, change your test to:
+
+    my $warning = warning { foo() };
+    like(
+        $warning,
+        qr/^this is a warning/,
+        'got a warning from foo()',
+    ) or diag 'got warning(s): ', explain($warning);
+
 =back
 
 =head1 OTHER OPTIONS
