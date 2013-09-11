@@ -4,6 +4,10 @@ Revision history for {{$dist->name}}
           - fixed error in synopsis (we do not export anything by default)
           - a caveat added to the documentation regarding embedding warning
             checks inside another sub (this is for you, ribasushi!!!)
+          - ':no_end_test' now also covers side effects of done_testing, as
+            well as END blocks, making it possible to use the warning(s) subs
+            without having an end warning test while using done_testing
+            (necessary when combining with the 'if' pragma)
 
 0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
           - compile test updated, to hopefully fix mswin32 parsing issues

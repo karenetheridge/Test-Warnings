@@ -84,7 +84,8 @@ if (Test::Builder->can('done_testing'))
         # only do this at the end of all tests, not at the end of a subtest
         my $builder = _builder;
         my $in_subtest_sub = $builder->can('in_subtest');
-        if (not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
+        if (not $no_end_test
+            and not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent))
         {
             local $Test::Builder::Level = $Test::Builder::Level + 3;
             had_no_warnings('no (unexpected) warnings (via done_testing)');
