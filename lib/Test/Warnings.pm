@@ -293,6 +293,24 @@ not in author testing), but will still provide exported subs.  Comments are
 enthusiastically solicited - drop me an email, write up an RT ticket, or come
 by C<#perl-qa> on irc!
 
+=for stopwords Achtung
+
+B<Achtung!>  This is not a great idea:
+
+    sub warning_like(&$;$) {
+        my ($code, $pattern, $name) = @_;
+        like( &warning($code), $pattern, $name );
+    }
+
+    warning_like(sub { }, qr/foo/, 'foo appears in the warning');
+
+If the code in the C<...> is going to warn with a stack trace with the
+arguments to each subroutine in its call stack (for example via C<Carp::cluck>,
+the test name, "foo appears in the warning" will itself be matched by the
+regex.  Instead, write this:
+
+  like( warning { ... }, qr/foo/, 'foo appears in the warning' );
+
 =head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over

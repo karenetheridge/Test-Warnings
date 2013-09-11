@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
           - fixed error in synopsis (we do not export anything by default)
+          - a caveat added to the documentation regarding embedding warning
+            checks inside another sub (this is for you, ribasushi!!!)
 
 0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
           - compile test updated, to hopefully fix mswin32 parsing issues
