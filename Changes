@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.009     2013-09-11 04:49:55Z (Karen Etheridge)
           - fixed error in synopsis (we do not export anything by default)
           - a caveat added to the documentation regarding embedding warning
             checks inside another sub (this is for you, ribasushi!!!)

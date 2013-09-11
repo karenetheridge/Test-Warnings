@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.008
+version 0.009
 
 # SYNOPSIS
 
@@ -12,14 +12,27 @@ version 0.008
     use Test::Warnings;
 
     pass('yay!');
-    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
     done_testing;
 
 emits TAP:
 
     ok 1 - yay!
+    ok 2 - no (unexpected) warnings (via done_testing)
+    1..2
+
+and:
+
+    use Test::More tests => 3;
+    use Test::Warnings 0.005 ':all';
+
+    pass('yay!');
+    like(warning { warn "oh noes!" }, qr/^oh noes/, 'we warned');
+
+emits TAP:
+
+    ok 1 - yay!
     ok 2 - we warned
-    ok 3 - no (unexpected) warnings (via done_testing)
+    ok 3 - no (unexpected) warnings (via END block)
     1..3
 
 # DESCRIPTION
@@ -97,6 +110,33 @@ can also get all of them by importing the tag `:all`):
     can be more convenient to use than `warnings()` if you are expecting exactly
     one warning.
 
+    However, you are advised to capture the result from `warning()` into a temp
+    variable so you can dump its value if it doesn't contain what you expect.
+    e.g. with this test:
+
+        like(
+            warning { foo() },
+            qr/^this is a warning/,
+            'got a warning from foo()',
+        );
+
+    if you get two warnings (or none) back instead of one, you'll get an
+    arrayref, which will result in an unhelpful test failure message like:
+
+        #   Failed test 'got a warning from foo()'
+        #   at t/mytest.t line 10.
+        #                   'ARRAY(0xdeadbeef)'
+        #     doesn't match '(?^:^this is a warning)'
+
+    So instead, change your test to:
+
+        my $warning = warning { foo() };
+        like(
+            $warning,
+            qr/^this is a warning/,
+            'got a warning from foo()',
+        ) or diag 'got warning(s): ', explain($warning);
+
 # OTHER OPTIONS
 
 - `:all` - Imports all functions listed above
@@ -119,6 +159,22 @@ indicate that warnings should be checked only in author tests (or TODO when
 not in author testing), but will still provide exported subs.  Comments are
 enthusiastically solicited - drop me an email, write up an RT ticket, or come
 by `#perl-qa` on irc!
+
+__Achtung!__  This is not a great idea:
+
+    sub warning_like(&$;$) {
+        my ($code, $pattern, $name) = @_;
+        like( &warning($code), $pattern, $name );
+    }
+
+    warning_like(sub { }, qr/foo/, 'foo appears in the warning');
+
+If the code in the `...` is going to warn with a stack trace with the
+arguments to each subroutine in its call stack (for example via `Carp::cluck`,
+the test name, "foo appears in the warning" will itself be matched by the
+regex.  Instead, write this:
+
+    like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
 # TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
