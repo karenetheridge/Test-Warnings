@@ -10,8 +10,6 @@ Revision history for {{$dist->name}}
             well as END blocks, making it possible to use the warning(s) subs
             without having an end warning test while using done_testing
             (necessary when combining with the 'if' pragma)
-          - END tests will not be added by a subequent use of Test::Warnings
-            if a previous one passed ':no_end_test'
 
 0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
           - compile test updated, to hopefully fix mswin32 parsing issues

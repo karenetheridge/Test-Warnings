@@ -7,7 +7,7 @@ END {
     final_tests();
 }
 
-use Test::Warnings 'warning';       # should still not add an END test
+use Test::Warnings 'warning';       # should not add an END test
 use Test::Warnings ':no_end_test';
 
 warn 'this warning should not be caught';
