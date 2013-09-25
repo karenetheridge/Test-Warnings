@@ -17,7 +17,7 @@ warning_like(sub { cluck 'blah blah' }, qr/foo/, 'foo seems to appear in the war
 unlike(
     ( warning { cluck 'blah blah' } || '' ),
     qr/foo/,
-    'foo does NOT appear in the warning',
+    'foo does NOT ACTUALLY appear in the warning',
 );
 
 done_testing;
