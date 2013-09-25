@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.009
+version 0.010
 
 # SYNOPSIS
 
@@ -140,7 +140,8 @@ can also get all of them by importing the tag `:all`):
 # OTHER OPTIONS
 
 - `:all` - Imports all functions listed above
-- `:no_end_test` - Disables the addition of a `had_no_warnings` test via END (but if you don't want to do this, you probably shouldn't be loading this module at all!)
+- `:no_end_test` - Disables the addition of a `had_no_warnings` test
+via `END` or `done_testing`
 
 # CAVEATS
 
