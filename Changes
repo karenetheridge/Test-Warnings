@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.011     2013-10-12 22:15:02Z (Karen Etheridge)
           - unnecessary tests removed; CONTRIBUTING file added
 
 0.010     2013-09-25 03:29:53Z (Karen Etheridge)

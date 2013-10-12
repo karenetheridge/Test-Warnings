@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.010
+version 0.011
 
 # SYNOPSIS
 
