@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - update configure_requires checking in Makefile.PL
 
 0.012     2013-10-14 16:54:47Z
           - re-release to fix t/00-report-prereqs.t use of
