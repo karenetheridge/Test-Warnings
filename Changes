@@ -2,17 +2,17 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
-0.012     2013-10-14 16:54:47Z (Karen Etheridge)
+0.012     2013-10-14 16:54:47Z
           - re-release to fix t/00-report-prereqs.t use of
             CPAN::Meta::Requirements
 
-0.011     2013-10-12 22:15:02Z (Karen Etheridge)
+0.011     2013-10-12 22:15:02Z
           - unnecessary tests removed; CONTRIBUTING file added
 
-0.010     2013-09-25 03:29:53Z (Karen Etheridge)
+0.010     2013-09-25 03:29:53Z
           - re-release with fixed compile test
 
-0.009     2013-09-11 04:49:55Z (Karen Etheridge)
+0.009     2013-09-11 04:49:55Z
           - fixed error in synopsis (we do not export anything by default)
           - a caveat added to the documentation regarding embedding warning
             checks inside another sub (this is for you, ribasushi!!!)
@@ -21,37 +21,37 @@ Revision history for {{$dist->name}}
             without having an end warning test while using done_testing
             (necessary when combining with the 'if' pragma)
 
-0.008     2013-07-14 12:02:01 PDT-0700 (Karen Etheridge)
+0.008     2013-07-14 19:02:01Z
           - compile test updated, to hopefully fix mswin32 parsing issues
 
-0.007     2013-07-09 15:10:36 PDT-0700 (Karen Etheridge)
+0.007     2013-07-09 22:10:36Z
           - fix subtest tests to work on Test::More before 0.95_01
             (RT#86802)
 
-0.006     2013-06-20 17:53:54 PDT-0700 (Karen Etheridge)
+0.006     2013-06-21 00:53:54Z
           - remove use of Class::Method::Modifiers
 
-0.005     2013-06-20 12:18:42 PDT-0700 (Karen Etheridge)
+0.005     2013-06-20 19:18:42Z
           - new feature: warnings { code } and warning { code }, for capturing
             the contents of warnings for subsequent testing
 
-0.004     2013-05-21 14:58:55 PDT-0700 (Karen Etheridge)
+0.004     2013-05-21 21:58:55Z
           - when allowing warnings (via allow_warnings()), messages are
             emitted via note() rather than warn(), for less noisy output when
             running in a harness
 
-0.003     2013-04-13 14:07:58 PDT-0700 (Karen Etheridge)
+0.003     2013-04-13 21:07:58Z
           - Test suite (and code) fixed to work in the presence of
             Test::Builder 1.005+ (TB2)
           - END logic fixed: now a no-warnings test is added whenever any
             tests have been run, even if there is no plan, as was originally
             intended
 
-0.002     2013-03-14 14:47:30 PDT-0700 (Karen Etheridge)
+0.002     2013-03-14 21:47:30Z
           Releasing as non-TRIAL for greater visibility.
           - ':no_end_test' option added
           - test added showing that we play nicely with 'skip_all'
 
-0.001-TRIAL  2013-03-09 16:56:29 PST-0800 (Karen Etheridge)
+0.001     2013-03-10 00:56:29Z (TRIAL RELEASE)
           - Initial release.
 
