@@ -301,16 +301,16 @@ B<Achtung!>  This is not a great idea:
         like( &warning($code), $pattern, $name );
     }
 
-    warning_like(sub { }, qr/foo/, 'foo appears in the warning');
+    warning_like( { ... }, qr/foo/, 'foo appears in the warning' );
 
-If the code in the C<...> is going to warn with a stack trace with the
-arguments to each subroutine in its call stack (for example via C<Carp::cluck>,
+If the code in the C<{ ... }> is going to warn with a stack trace with the
+arguments to each subroutine in its call stack (for example via C<Carp::cluck>),
 the test name, "foo appears in the warning" will itself be matched by the
 regex.  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
-=head1 TO DO (i.e. POSSIBLE FEATURES COMING IN FUTURE RELEASES)
+=head1 TO DO (or: POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over
 
@@ -346,11 +346,9 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 * L<blogs.perl.org: YANWT (Yet Another No-Warnings Tester)|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
 * L<strictures> - which makes all warnings fatal in tests, hence lessening
 the need for special warning testing
+* L<Test::Warn>
+* L<Test::Fatal>
 
 =end :list
-
-L<Test::Warn>
-
-L<Test::Fatal>
 
 =cut
