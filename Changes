@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix test that fails when FOO or BAR environment variables are set
+          (RT#93447)
 
 0.013     2013-12-14 21:26:06Z
           - update configure_requires checking in Makefile.PL
