@@ -274,7 +274,7 @@ via C<END> or C<done_testing>
 
 =head1 CAVEATS
 
-=for stopwords smartmatch TODO
+=for stopwords smartmatch TODO irc
 
 Sometimes new warnings can appear in Perl that should B<not> block
 installation -- for example, smartmatch was recently deprecated in
