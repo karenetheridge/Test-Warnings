@@ -3,7 +3,6 @@ use warnings FATAL => 'all';
 
 use Test::More 0.88;
 use Test::Warnings ':all';
-use Test::Deep;
 
 {
     my @lines;
@@ -12,7 +11,7 @@ use Test::Deep;
     };
 
     my $file = __FILE__;
-    cmp_deeply(
+    is_deeply(
         \@warnings,
         [
             "testing 1 2 3 at $file line $lines[0].\n",
@@ -38,7 +37,7 @@ use Test::Deep;
     };
 
     my $file = __FILE__;
-    cmp_deeply(
+    is_deeply(
         \@warnings,
         [
             "testing 1 2 3 at $file line $lines[0].\n",
@@ -51,7 +50,7 @@ use Test::Deep;
         warn 'testing 1 2 3';   push @lines, __LINE__;
         warn 'another warning'; push @lines, __LINE__;
     };
-    cmp_deeply(
+    is_deeply(
         $warning,
         [
             "testing 1 2 3 at $file line $lines[2].\n",
@@ -67,7 +66,7 @@ use Test::Deep;
         note 'nor here';
     };
 
-    cmp_deeply(
+    is_deeply(
         \@warnings,
         [ ],
         'warnings() successfully captured all warnings (none!)',
@@ -78,7 +77,7 @@ use Test::Deep;
         note 'nor here';
     };
 
-    cmp_deeply(
+    is_deeply(
         $warning,
         [ ],
         'warning() successfully captured all warnings (none!)',
