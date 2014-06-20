@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
+# KEYWORDS: testing tests warnings
 # vim: set ts=8 sw=4 tw=78 et :
 
 use parent 'Exporter';
