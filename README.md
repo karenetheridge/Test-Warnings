@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.014
+version 0.015
 
 # SYNOPSIS
 
@@ -145,7 +145,7 @@ via `END` or `done_testing`
 
 # CAVEATS
 
-Sometimes new warnings can appear in Perl that should __not__ block
+Sometimes new warnings can appear in Perl that should **not** block
 installation -- for example, smartmatch was recently deprecated in
 perl 5.17.11, so now any distribution that uses smartmatch and also
 tests for warnings cannot be installed under 5.18.0.  You might want to
@@ -161,7 +161,7 @@ not in author testing), but will still provide exported subs.  Comments are
 enthusiastically solicited - drop me an email, write up an RT ticket, or come
 by `#perl-qa` on irc!
 
-__Achtung!__  This is not a great idea:
+**Achtung!**  This is not a great idea:
 
     sub warning_like(&$;$) {
         my ($code, $pattern, $name) = @_;
