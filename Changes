@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix prereq problem with last release - now no longer testing the
+            example scripts for user installs
 
 0.015     2014-06-20 03:36:33Z
           - adjusted packaging and tests to become perl-5.6 friendly,
