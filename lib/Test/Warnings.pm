@@ -307,7 +307,7 @@ B<Achtung!>  This is not a great idea:
 If the code in the C<{ ... }> is going to warn with a stack trace with the
 arguments to each subroutine in its call stack (for example via C<Carp::cluck>),
 the test name, "foo appears in the warning" will itself be matched by the
-regex.  Instead, write this:
+regex (see F<examples/warning_like.t>).  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
