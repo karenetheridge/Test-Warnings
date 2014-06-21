@@ -4,7 +4,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 # VERSION
 
-version 0.015
+version 0.016
 
 # SYNOPSIS
 
@@ -173,7 +173,7 @@ by `#perl-qa` on irc!
 If the code in the `{ ... }` is going to warn with a stack trace with the
 arguments to each subroutine in its call stack (for example via `Carp::cluck`),
 the test name, "foo appears in the warning" will itself be matched by the
-regex.  Instead, write this:
+regex (see `examples/warning_like.t`).  Instead, write this:
 
     like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
