@@ -1,6 +1,9 @@
 use strict;
 use warnings FATAL => 'all';
 
+# another demonstration of the various features of Test::Warnings, where
+# a test plan is used
+
 use Test::More tests => 8;
 use Test::Warnings ':all';
 
@@ -24,4 +27,3 @@ warn 'oh noes, something warned!';
 had_no_warnings;
 
 note 'we are done; had_no_warnings will be called automatically via END block.';
-

@@ -1,6 +1,10 @@
 use strict;
 use warnings FATAL => 'all';
 
+# this test demonstrates that warnings can be captured and tested, and other
+# expected warnings can be whitelisted, to allow the had-no-warnings test not
+# to fail
+
 use Test::More tests => 2;
 use Test::Warnings ':all';
 use Test::Deep;
@@ -25,4 +29,3 @@ cmp_deeply(
 allow_warnings;
 warn $_ foreach @warnings;
 allow_warnings(0);
-

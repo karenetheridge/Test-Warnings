@@ -1,6 +1,9 @@
 use strict;
 use warnings;
 
+# this test demonstrates that Test::Warnings can play nicely with
+# Test::More::done_testing
+
 use Test::More;
 use Test::Warnings;
 

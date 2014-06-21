@@ -1,6 +1,10 @@
 use strict;
 use warnings FATAL => 'all';
 
+# this test demonstrates the issue described in the main documentation, where
+# a test of the contents of a captured warning can inadvertently match another
+# part of the stack trace (the pattern argument to the test sub, itself!)
+
 use Test::More;
 use Test::Warnings ':all';
 use Carp 'cluck';

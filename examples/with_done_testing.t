@@ -1,6 +1,9 @@
 use strict;
 use warnings FATAL => 'all';
 
+# another demonstration of the various features of Test::Warnings, where
+# Test::More::done_testing is used
+
 use Test::More;
 use Test::Warnings ':all';
 
@@ -26,4 +29,3 @@ had_no_warnings;
 note 'we are done; call done_testing to signal completion. had_no_warnings will be called automatically.';
 
 done_testing;
-
