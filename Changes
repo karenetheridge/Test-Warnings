@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.017     2014-12-16 20:17:22Z
           - handle other warning handlers passing us partial warning messages
             by re-adding the source file and line number
 
