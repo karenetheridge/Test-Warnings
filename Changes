@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - handle other warning handlers passing us partial warning messages
+            by re-adding the source file and line number
 
 0.016     2014-06-21 04:04:55Z
           - fix prereq problem with last release - now no longer testing the

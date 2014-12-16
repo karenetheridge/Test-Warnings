@@ -51,7 +51,13 @@ $SIG{__WARN__} = sub {
     }
     else
     {
-        warn $msg;
+        if ($msg =~ /\n$/) {
+            warn $msg;
+        } else {
+            require Carp;
+            Carp::carp($msg)
+        }
+
         $forbidden_warnings_found++;
     }
 };
