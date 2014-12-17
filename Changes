@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - fix test to not depend on message formatting changes in newer Carp
 
 0.017     2014-12-16 20:17:22Z
           - handle other warning handlers passing us partial warning messages
