@@ -22,7 +22,7 @@ use Test::Warnings ':no_end_test', 'warnings';
     my @warnings = warnings { $original_handler->('a warning with no newline'); $line = __LINE__; $file = __FILE__ };
     like(
         $warnings[0],
-        qr/^a warning with no newline at \Q$file\E line $line.?\n$/,
+        qr/^a warning with no newline at \Q$file\E line $line\.?\n$/,
         'warning has origin properly added when it was lacking',
     );
 }
