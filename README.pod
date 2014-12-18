@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 
@@ -285,9 +285,13 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Graham Knop Leon Timmermans
+=for stopwords A. Sinan Unur Graham Knop Leon Timmermans
 
 =over 4
+
+=item *
+
+A. Sinan Unur <nanis@cpan.org>
 
 =item *
 
