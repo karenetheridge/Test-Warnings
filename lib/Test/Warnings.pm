@@ -55,7 +55,7 @@ $SIG{__WARN__} = sub {
             warn $msg;
         } else {
             require Carp;
-            Carp::carp($msg)
+            Carp::carp($msg);
         }
 
         $forbidden_warnings_found++;
