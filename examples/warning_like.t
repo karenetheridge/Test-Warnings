@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 # this test demonstrates the issue described in the main documentation, where
 # a test of the contents of a captured warning can inadvertently match another

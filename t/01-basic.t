@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 my $has_test_tester;
 BEGIN { $has_test_tester = eval { require Test::Tester; Test::Tester->VERSION(0.108); 1 } }

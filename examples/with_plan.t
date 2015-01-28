@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 # another demonstration of the various features of Test::Warnings, where
 # a test plan is used

@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 # we intended to insert a test at END time whenever:
 # - done_testing has not been run,

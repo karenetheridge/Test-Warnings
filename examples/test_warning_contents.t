@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 # this test demonstrates that warnings can be captured and tested, and other
 # expected warnings can be whitelisted, to allow the had-no-warnings test not

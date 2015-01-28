@@ -1,5 +1,5 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 use Test::More 0.94;
 use Test::Pod::Coverage 1.08;
