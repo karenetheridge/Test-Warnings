@@ -369,8 +369,7 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 
 =for stopwords YANWT
 
-=begin :list
-
+=for :list
 * L<Test::NoWarnings>
 * L<Test::FailWarnings>
 * L<blogs.perl.org: YANWT (Yet Another No-Warnings Tester)|http://blogs.perl.org/users/ether/2013/03/yanwt-yet-another-no-warnings-tester.html>
@@ -378,7 +377,5 @@ I am also usually active on irc, as 'ether' at C<irc.perl.org>.
 the need for special warning testing
 * L<Test::Warn>
 * L<Test::Fatal>
-
-=end :list
 
 =cut
