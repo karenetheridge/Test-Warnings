@@ -1,0 +1,6 @@
+
+seen in CE code:
+
+    # now clear the 'had warnings' flag, for the next test class (TODO: Test::Warnings should have an API for this)
+    undef ${ PadWalker::closed_over(\&Test::Warnings::had_no_warnings)->{'$forbidden_warnings_found'} };
+
