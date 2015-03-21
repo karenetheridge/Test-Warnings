@@ -3,7 +3,7 @@ Revision history for {{$dist->name}}
 {{$NEXT}}
           - add a x_breaks entry for conflicting versions of File::pushd which
             inadvertently call our exported warnings() rather than invoking
-            warnings.pm
+            warnings.pm, and documented this undesired interaction
 
 0.020     2015-01-03 20:32:21Z
           - re-release to fix problematic $VERSION declaration (RT#101239)

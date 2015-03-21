@@ -257,6 +257,14 @@ since they are returned from this function with their filename and line
 numbers intact, you can re-issue them yourself immediately after calling
 C<warnings(...)>, if desired.
 
+Note that C<use Test::Warnings 'warnings'> will give you a C<warnings>
+subroutine in your namespace (most likely C<main>, if you're writing a test),
+so you (or things you load) can't subsequently do C<< warnings->import >> --
+it will result in the error: "Not enough arguments for
+Test::Warnings::warnings at ..., near "warnings->import"".  To work around
+this, either use the fully-qualified form (C<Test::warnings>) or make your
+calls to the C<warnings> package first.
+
 =head2 C<< warning( { code } ) >>
 
 Same as C<< warnings( { code } ) >>, except a scalar is always returned - the
