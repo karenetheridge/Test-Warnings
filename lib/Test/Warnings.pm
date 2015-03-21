@@ -293,14 +293,14 @@ So instead, change your test to:
 
 =head1 IMPORT OPTIONS
 
-=over 4
+=head2 C<:all>
 
-=item * C<:all> - Imports all functions listed above
+Imports all functions listed above
 
-=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test
+=head2 C<:no_end_test>
+
+Disables the addition of a C<had_no_warnings> test
 via C<END> or C<done_testing>
-
-=back
 
 =head1 CAVEATS
 
