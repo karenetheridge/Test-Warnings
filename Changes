@@ -1,6 +1,6 @@
-Revision history for {{$dist->name}}
+Revision history for Test-Warnings
 
-{{$NEXT}}
+0.021     2015-03-21 18:48:27Z
           - add a x_breaks entry for conflicting versions of File::pushd which
             inadvertently call our exported warnings() rather than invoking
             warnings.pm, and documented this undesired interaction

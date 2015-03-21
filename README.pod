@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -130,6 +130,14 @@ since they are returned from this function with their filename and line
 numbers intact, you can re-issue them yourself immediately after calling
 C<warnings(...)>, if desired.
 
+Note that C<use Test::Warnings 'warnings'> will give you a C<warnings>
+subroutine in your namespace (most likely C<main>, if you're writing a test),
+so you (or things you load) can't subsequently do C<< warnings->import >> --
+it will result in the error: "Not enough arguments for
+Test::Warnings::warnings at ..., near "warnings->import"".  To work around
+this, either use the fully-qualified form (C<Test::warnings>) or make your
+calls to the C<warnings> package first.
+
 =head2 C<< warning( { code } ) >>
 
 Same as C<< warnings( { code } ) >>, except a scalar is always returned - the
@@ -166,14 +174,14 @@ So instead, change your test to:
 
 =head1 IMPORT OPTIONS
 
-=over 4
+=head2 C<:all>
 
-=item * C<:all> - Imports all functions listed above
+Imports all functions listed above
 
-=item * C<:no_end_test> - Disables the addition of a C<had_no_warnings> test
+=head2 C<:no_end_test>
+
+Disables the addition of a C<had_no_warnings> test
 via C<END> or C<done_testing>
-
-=back
 
 =head1 CAVEATS
 
@@ -283,24 +291,10 @@ This software is copyright (c) 2013 by Karen Etheridge.
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-=head1 CONTRIBUTORS
+=head1 CONTRIBUTOR
 
-=for stopwords A. Sinan Unur Graham Knop Leon Timmermans
-
-=over 4
-
-=item *
+=for stopwords A. Sinan Unur
 
 A. Sinan Unur <nanis@cpan.org>
-
-=item *
-
-Graham Knop <haarg@haarg.org>
-
-=item *
-
-Leon Timmermans <fawaka@gmail.com>
-
-=back
 
 =cut
