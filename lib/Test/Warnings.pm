@@ -4,7 +4,7 @@ package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings
 # vim: set ts=8 sts=4 sw=4 tw=78 et :
-
+our $VERSION = '0.022';
 use parent 'Exporter';
 use Test::Builder;
 
