@@ -28,7 +28,7 @@ sub import
     my $i = 0;
     while ($i < scalar(@_)) {
         my $a = $_[$i];
-        if ($a eq '-pattern') {
+        if ($a eq '-allowed_pattern') {
             (undef, $allowed_pattern) = splice @_, $i, 2;
             $i++;
         }
@@ -58,7 +58,7 @@ sub _builder(;$)
 $SIG{__WARN__} = sub {
     my $msg = shift;
 
-    if ($warnings_allowed || $msg =~ $allowed_pattern)
+    if ($warnings_allowed || ($allowed_pattern && $msg =~ $allowed_pattern))
     {
         Test::Builder->new->note($msg);
     }
