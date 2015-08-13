@@ -21,9 +21,20 @@ my $warnings_allowed;
 my $forbidden_warnings_found;
 my $done_testing_called;
 my $no_end_test;
+my $allowed_pattern;
 
 sub import
 {
+    my $i = 0;
+    while ($i < scalar(@_)) {
+        my $a = $_[$i];
+        if ($a eq '-pattern') {
+            (undef, $allowed_pattern) = splice @_, $i, 2;
+            $i++;
+        }
+        $i++;
+    }
+
     # END block will check for this status
     my @symbols = grep { $_ ne ':no_end_test' } @_;
     $no_end_test = (@symbols != @_);
@@ -47,7 +58,7 @@ sub _builder(;$)
 $SIG{__WARN__} = sub {
     my $msg = shift;
 
-    if ($warnings_allowed)
+    if ($warnings_allowed || $msg =~ $allowed_pattern)
     {
         Test::Builder->new->note($msg);
     }
