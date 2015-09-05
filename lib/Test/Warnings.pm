@@ -368,13 +368,6 @@ environment
 
 =back
 
-=head1 SUPPORT
-
-=for stopwords irc
-
-Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>.
-I am also usually active on irc, as 'ether' at C<irc.perl.org>.
-
 =head1 SEE ALSO
 
 =for stopwords YANWT
