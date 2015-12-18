@@ -1,6 +1,9 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - propagate all warnings to any previously-declared __WARN__
+            handlers (unlike with __DIE__, merely calling warn() is not
+            sufficient)
 
 0.021     2015-03-21 18:48:27Z
           - add a x_breaks entry for conflicting versions of File::pushd which

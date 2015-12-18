@@ -44,23 +44,23 @@ sub _builder(;$)
     $tb = shift;
 }
 
+my $_orig_warn_handler = $SIG{__WARN__};
 $SIG{__WARN__} = sub {
-    my $msg = shift;
-
     if ($warnings_allowed)
     {
-        Test::Builder->new->note($msg);
+        Test::Builder->new->note($_[0]);
     }
     else
     {
-        if ($msg =~ /\n$/) {
-            warn $msg;
+        $forbidden_warnings_found++;
+        goto &$_orig_warn_handler if $_orig_warn_handler;
+
+        if ($_[0] =~ /\n$/) {
+            warn $_[0];
         } else {
             require Carp;
-            Carp::carp($msg);
+            Carp::carp($_[0]);
         }
-
-        $forbidden_warnings_found++;
     }
 };
 
