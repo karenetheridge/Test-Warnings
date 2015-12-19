@@ -1,5 +1,7 @@
 Revision history for Test-Warnings
 
+{{$NEXT}}
+
 0.022     2015-12-19 00:32:42Z
           - propagate all warnings to any previously-declared __WARN__
             handlers (unlike with __DIE__, merely calling warn() is not
