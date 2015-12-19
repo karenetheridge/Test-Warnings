@@ -1,6 +1,9 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - properly handle propagating warnings to previously declared
+            handlers that are not coderefs (i.e. a sub name, or the magic
+            DEFAULT and IGNORE)
 
 0.022     2015-12-19 00:32:42Z
           - propagate all warnings to any previously-declared __WARN__

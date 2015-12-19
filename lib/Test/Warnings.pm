@@ -53,7 +53,11 @@ $SIG{__WARN__} = sub {
     else
     {
         $forbidden_warnings_found++;
-        goto &$_orig_warn_handler if $_orig_warn_handler;
+
+        # TODO: this doesn't handle blessed coderefs... does anyone care?
+        goto &$_orig_warn_handler if $_orig_warn_handler
+            and (ref $_orig_warn_handler eq 'CODE'
+                or ($_orig_warn_handler ne 'DEFAULT' and $_orig_warn_handler ne 'IGNORE'));
 
         if ($_[0] =~ /\n$/) {
             warn $_[0];
