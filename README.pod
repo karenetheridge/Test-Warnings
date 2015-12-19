@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 
@@ -239,13 +239,6 @@ environment
 
 =back
 
-=head1 SUPPORT
-
-=for stopwords irc
-
-Bugs may be submitted through L<https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>.
-I am also usually active on irc, as 'ether' at C<irc.perl.org>.
-
 =head1 SEE ALSO
 
 =for stopwords YANWT
@@ -280,21 +273,34 @@ L<Test::Fatal>
 
 =back
 
+=head1 SUPPORT
+
+Bugs may be submitted through L<the RT bug tracker|https://rt.cpan.org/Public/Dist/Display.html?Name=Test-Warnings>
+(or L<bug-Test-Warnings@rt.cpan.org|mailto:bug-Test-Warnings@rt.cpan.org>).
+
+There is also a mailing list available for users of this distribution, at
+L<http://lists.perl.org/list/perl-qa.html>.
+
+There is also an irc channel available for users of this distribution, at
+L<irc://irc.perl.org/#perl-qa>.
+
+I am also usually active on irc, as 'ether' at C<irc.perl.org>.
+
 =head1 AUTHOR
 
 Karen Etheridge <ether@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2013 by Karen Etheridge.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTOR
 
 =for stopwords A. Sinan Unur
 
 A. Sinan Unur <nanis@cpan.org>
+
+=head1 COPYRIGHT AND LICENCE
+
+This software is copyright (c) 2013 by Karen Etheridge.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
