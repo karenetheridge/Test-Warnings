@@ -59,7 +59,7 @@ $SIG{__WARN__} = sub {
             and (  (ref $_orig_warn_handler eq 'CODE')
                 or ($_orig_warn_handler ne 'DEFAULT'
                     and $_orig_warn_handler ne 'IGNORE'
-                    and defined &{$_orig_warn_handler}));
+                    and defined &$_orig_warn_handler));
 
         if ($_[0] =~ /\n$/) {
             warn $_[0];
