@@ -5,7 +5,7 @@ package Test::Warnings;
 # KEYWORDS: testing tests warnings
 # vim: set ts=8 sts=4 sw=4 tw=115 et :
 
-our $VERSION = '0.023';
+our $VERSION = '0.024';
 
 use parent 'Exporter';
 use Test::Builder;

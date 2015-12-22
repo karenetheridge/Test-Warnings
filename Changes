@@ -1,5 +1,7 @@
 Revision history for Test-Warnings
 
+{{$NEXT}}
+
 0.023     2015-12-22 06:44:24Z
           - properly handle propagating warnings to previously declared
             handlers that are not coderefs (i.e. a sub name, or the magic
