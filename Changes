@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.024     2015-12-24 18:44:29Z
           - remove diagnostics accidentally left in new test
 
 0.023     2015-12-22 06:44:24Z
