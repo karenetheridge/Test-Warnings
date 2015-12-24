@@ -9,7 +9,7 @@ END {
 
 use Test::Warnings ':no_end_test';
 
-warn 'this warning should not be caught';
+warn 'this warning is not expected to be caught';
 
 pass 'a passing test, to keep the harness happy';
 

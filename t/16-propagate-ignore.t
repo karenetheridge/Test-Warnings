@@ -13,7 +13,7 @@ BEGIN {
 
 use Test::Warnings qw(:all :no_end_test);
 
-warn 'this warning should not be caught';
+warn 'this warning is not expected to be caught';
 
 SKIP: {
     skip 'PadWalker required for this test', 1

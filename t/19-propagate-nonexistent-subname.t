@@ -9,7 +9,7 @@ BEGIN {
 
 use Test::Warnings qw(:all :no_end_test);
 
-eval { warn 'hello this is a warning' };
+eval { warn 'this warning is not expected to be caught' };
 is($@, '', 'non-existent sub in warning handler does not result in an exception');
 
 SKIP: {

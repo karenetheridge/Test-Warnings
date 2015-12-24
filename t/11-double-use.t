@@ -10,7 +10,7 @@ END {
 use Test::Warnings 'warning';       # should not add an END test
 use Test::Warnings ':no_end_test';
 
-warn 'this warning should not be caught';
+warn 'this warning is not expected to be caught';
 
 like(warning { warn 'ohhai' }, qr/^ohhai/, 'warning() was imported');
 

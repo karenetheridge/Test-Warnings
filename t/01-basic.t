@@ -27,7 +27,7 @@ had_no_warnings;                                        # TEST 1
 
 allow_warnings(0);
 ok(!allowing_warnings, 'warnings are not allowed again');
-warn 'oh noes, something warned!';
+warn 'this warning is not expected to be caught';
 
 allow_warnings(undef);
 ok(!allowing_warnings, 'warnings are still not allowed');
