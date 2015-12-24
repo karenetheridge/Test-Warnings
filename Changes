@@ -1,6 +1,9 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - prereqs lowered from required to suggested:
+            - CPAN::Meta::Check
+            - CPAN::Meta::Requirements
 
 0.024     2015-12-24 18:44:29Z
           - remove diagnostics accidentally left in new test
