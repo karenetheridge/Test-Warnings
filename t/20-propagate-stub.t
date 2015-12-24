@@ -9,7 +9,5 @@ my $code = do {
 
 $code =~ s/(use Test::More;)/$1\n\nsub does_not_exist;/;
 
-print STDERR "$code\n";
-
 eval $code;
 die $@ if $@;
