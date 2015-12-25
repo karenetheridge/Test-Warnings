@@ -8,6 +8,7 @@ END {
 }
 
 use Test::Warnings ':no_end_test';
+use lib 't/lib'; use SilenceStderr;
 
 warn 'this warning is not expected to be caught';
 

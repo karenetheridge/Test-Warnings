@@ -4,6 +4,8 @@ Revision history for Test-Warnings
           - prereqs lowered from required to suggested:
             - CPAN::Meta::Check
             - CPAN::Meta::Requirements
+          - tests are now quieter to avoid causing confusion, by suppressing
+            the printing of stderr in tests
 
 0.024     2015-12-24 18:44:29Z
           - remove diagnostics accidentally left in new test

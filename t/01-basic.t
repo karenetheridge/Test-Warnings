@@ -15,6 +15,7 @@ END {
 }
 
 use Test::Warnings ':all';
+use lib 't/lib'; use SilenceStderr;
 
 # we swap out our $tb for Test::Tester's, so we can also test the results
 # of the END block... (although not all methods are supported!)

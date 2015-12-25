@@ -8,6 +8,7 @@ BEGIN {
 }
 
 use Test::Warnings qw(:all :no_end_test);
+use lib 't/lib'; use SilenceStderr;
 
 eval { warn 'this warning is not expected to be caught' };
 is($@, '', 'non-existent sub in warning handler does not result in an exception');
