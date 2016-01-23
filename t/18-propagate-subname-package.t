@@ -9,7 +9,7 @@ my $code = do {
     <$fh>
 };
 
-$code =~ s/(use Test::More;)/package MyPackage;\n$1/;
+$code =~ s/(use Test::More 0.88;)/package MyPackage;\n$1/;
 $code =~ s/\$SIG\{__WARN__\} = 'warning_capturer'/\$SIG\{__WARN__\} = 'MyPackage::warning_capturer'/;
 
 eval $code;

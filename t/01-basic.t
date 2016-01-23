@@ -4,7 +4,7 @@ use warnings;
 my $has_test_tester;
 BEGIN { $has_test_tester = eval { require Test::Tester; Test::Tester->VERSION(0.108); 1 } }
 
-use Test::More;
+use Test::More 0.88;
 plan skip_all => 'These tests require Test::Tester 0.108' if not $has_test_tester;
 
 plan tests => 19;     # avoid our done_testing hook
