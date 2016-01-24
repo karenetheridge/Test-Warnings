@@ -1,5 +1,7 @@
 Revision history for Test-Warnings
 
+{{$NEXT}}
+
 0.025     2016-01-24 02:59:28Z
           - prereqs lowered from required to suggested:
             - CPAN::Meta::Check
