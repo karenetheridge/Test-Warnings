@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.026     2016-01-27 03:13:25Z
           - fixed use of modules loaded by t/zzz-check-breaks.t
           - fix stderr suppression on perl 5.6
 
