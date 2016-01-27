@@ -14,11 +14,7 @@ if ("$]" >= '5.008')
 END {
     if ("$]" >= '5.008')
     {
-        if ($stderr)
-        {
-            Test::More::note('suppressed STDERR:');
-            Test::More::note($stderr);
-        }
+        Test::More::note 'suppressed STDERR:', $stderr if $stderr;
 
         close STDERR;
         open STDERR, '>&', $stderr_copy
