@@ -12,7 +12,8 @@ BEGIN {
 }
 
 use Test::Warnings qw(:all :no_end_test);
-use lib 't/lib'; use SilenceStderr;
+use if "$]" >= '5.008', lib => 't/lib';
+use if "$]" >= '5.008', 'SilenceStderr';
 
 warn 'this warning is not expected to be caught';
 

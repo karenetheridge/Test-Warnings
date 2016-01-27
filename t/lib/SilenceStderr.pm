@@ -1,23 +1,17 @@
 use strict;
 use warnings;
 
-my ($stderr, $stderr_copy);
+# this file is only parsable on 5.8+.
 
-if ("$]" >= '5.008')
-{
-    open $stderr_copy, '>&', STDERR;
-    close STDERR;
-    open STDERR, '>', \$stderr
-        or die 'something went wrong when redirecting STDERR';
-}
+open my $stderr_copy, '>&', STDERR;
+close STDERR;
+open STDERR, '>', \my $stderr
+    or die 'something went wrong when redirecting STDERR';
 
 END {
-    if ("$]" >= '5.008')
-    {
-        Test::More::note 'suppressed STDERR:', $stderr if $stderr;
+    Test::More::note 'suppressed STDERR:', $stderr if $stderr;
 
-        close STDERR;
-        open STDERR, '>&', $stderr_copy
-            or die 'something went wrong when restoring STDERR';
-    }
+    close STDERR;
+    open STDERR, '>&', $stderr_copy
+        or die 'something went wrong when restoring STDERR';
 }
