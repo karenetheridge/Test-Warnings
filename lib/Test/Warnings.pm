@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 package Test::Warnings;
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings
-# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
 our $VERSION = '0.027';
 
