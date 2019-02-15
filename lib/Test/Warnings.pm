@@ -25,7 +25,7 @@ my $no_end_test;
 sub import
 {
     # END block will check for this status
-    my @symbols = grep { $_ ne ':no_end_test' } @_;
+    my @symbols = grep $_ ne ':no_end_test', @_;
     $no_end_test = (@symbols != @_);
 
     __PACKAGE__->export_to_level(1, @symbols);
