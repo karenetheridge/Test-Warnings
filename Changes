@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.027     2019-09-28 03:54:47Z
           - new :fail_on_warning feature, for more easily seeing where the
             surprising warning appeared during testing
 
