@@ -1,6 +1,8 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - new :fail_on_warning feature, for more easily seeing where the
+            surprising warning appeared during testing
 
 0.026     2016-01-27 03:13:25Z
           - fixed use of modules loaded by t/zzz-check-breaks.t

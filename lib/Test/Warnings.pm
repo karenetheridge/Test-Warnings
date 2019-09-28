@@ -21,14 +21,20 @@ my $warnings_allowed;
 my $forbidden_warnings_found;
 my $done_testing_called;
 my $no_end_test;
+my $fail_on_warning;
 
 sub import
 {
-    # END block will check for this status
-    my @symbols = grep $_ ne ':no_end_test', @_;
-    $no_end_test = (@symbols != @_);
+    my $class = shift @_;
 
-    __PACKAGE__->export_to_level(1, @symbols);
+    my %names; @names{@_} = ();
+    # END block will check for this status
+    $no_end_test = exists $names{':no_end_test'};
+    # __WARN__ handler will check for this status
+    $fail_on_warning = exists $names{':fail_on_warning'};
+
+    delete @names{qw(:no_end_test :fail_on_warning)};
+    __PACKAGE__->export_to_level(1, $class, keys %names);
 }
 
 # for testing this module only!
@@ -67,6 +73,7 @@ $SIG{__WARN__} = sub {
             require Carp;
             Carp::carp($_[0]);
         }
+        _builder->ok(0, 'unexpected warning') if $fail_on_warning;
     }
 };
 
@@ -317,6 +324,16 @@ Imports all functions listed above
 
 Disables the addition of a C<had_no_warnings> test
 via C<END> or C<done_testing>
+
+=head2 C<:fail_on_warning>
+
+=for stopwords unexempted
+
+When used, fail immediately when an unexempted warning is generated (as opposed to waiting until
+L</had_no_warnings> or C<done_testing> is called).
+
+I recommend you only turn this option on when debugging a test, to see where a surprise warning is coming from,
+and rely on the end-of-tests check otherwise.
 
 =head1 CAVEATS
 
