@@ -1,6 +1,8 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - allow for calling warnings->import being called after importing
+            the "warnings" sub
 
 0.027     2019-09-28 03:54:47Z
           - new :fail_on_warning feature, for more easily seeing where the
