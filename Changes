@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.028     2019-12-21 20:16:01Z
           - allow for calling warnings->import being called after importing
             the "warnings" sub
 

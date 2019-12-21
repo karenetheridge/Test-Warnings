@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.027
+version 0.028
 
 =head1 SYNOPSIS
 
@@ -300,17 +300,17 @@ Karen Etheridge <ether@cpan.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords A. Sinan Unur Graham Knop Leon Timmermans
+=for stopwords Graham Knop A. Sinan Unur Leon Timmermans
 
 =over 4
 
 =item *
 
-A. Sinan Unur <nanis@cpan.org>
+Graham Knop <haarg@haarg.org>
 
 =item *
 
-Graham Knop <haarg@haarg.org>
+A. Sinan Unur <nanis@cpan.org>
 
 =item *
 
