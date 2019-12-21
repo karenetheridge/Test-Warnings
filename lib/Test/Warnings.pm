@@ -77,8 +77,14 @@ $SIG{__WARN__} = sub {
     }
 };
 
-sub warnings(&)
+sub warnings(;&)
 {
+    # if someone manually does warnings->import in the same namespace this is
+    # imported into, this sub will be called.  in that case, just return the
+    # string "warnings" so it calls the correct method.
+    if (!@_) {
+        return 'warnings';
+    }
     my $code = shift;
     my @warnings;
     local $SIG{__WARN__} = sub {
