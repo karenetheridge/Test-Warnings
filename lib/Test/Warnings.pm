@@ -352,6 +352,11 @@ L</had_no_warnings> or C<done_testing> is called).
 I recommend you only turn this option on when debugging a test, to see where a surprise warning is coming from,
 and rely on the end-of-tests check otherwise.
 
+=head2 C<:report_warnings>
+
+When used, C<had_no_warnings()> will print all the unexempted warning content, in case it had been suppressed
+earlier by other captures (such as L<Test::Output/stderr_like> or L<Capture::Tiny/capture>).
+
 =head1 CAVEATS
 
 =for stopwords smartmatch TODO irc
