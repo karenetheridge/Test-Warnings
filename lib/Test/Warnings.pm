@@ -22,6 +22,8 @@ my $forbidden_warnings_found;
 my $done_testing_called;
 my $no_end_test;
 my $fail_on_warning;
+my $report_warnings;
+my @collected_warnings;
 
 sub import
 {
@@ -32,8 +34,10 @@ sub import
     $no_end_test = exists $names{':no_end_test'};
     # __WARN__ handler will check for this status
     $fail_on_warning = exists $names{':fail_on_warning'};
+    # Collect and report warnings at the end
+    $report_warnings = exists $names{':report_warnings'};
 
-    delete @names{qw(:no_end_test :fail_on_warning)};
+    delete @names{qw(:no_end_test :fail_on_warning :report_warnings)};
     __PACKAGE__->export_to_level(1, $class, keys %names);
 }
 
@@ -59,6 +63,7 @@ $SIG{__WARN__} = sub {
     else
     {
         $forbidden_warnings_found++;
+        push @collected_warnings, $_[0] if $report_warnings;
 
         # TODO: this doesn't handle blessed coderefs... does anyone care?
         goto &$_orig_warn_handler if $_orig_warn_handler
@@ -151,6 +156,12 @@ sub allowing_warnings() { $warnings_allowed }
 sub had_no_warnings(;$)
 {
     _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+    if ($report_warnings and $forbidden_warnings_found) {
+        _builder->diag("Got the following unexpected warnings:");
+        for my $i (1 .. @collected_warnings) {
+            _builder->diag("  $i: $collected_warnings[ $i - 1 ]");
+        }
+    }
 }
 
 1;
@@ -340,6 +351,11 @@ L</had_no_warnings> or C<done_testing> is called).
 
 I recommend you only turn this option on when debugging a test, to see where a surprise warning is coming from,
 and rely on the end-of-tests check otherwise.
+
+=head2 C<:report_warnings>
+
+When used, C<had_no_warnings()> will print all the unexempted warning content, in case it had been suppressed
+earlier by other captures (such as L<Test::Output/stderr_like> or L<Capture::Tiny/capture>).
 
 =head1 CAVEATS
 
