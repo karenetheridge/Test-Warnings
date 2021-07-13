@@ -1,6 +1,8 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - remove unneeded develop prereqs that caused metacpan to unduly
+            raise the river position of some dependent modules
 
 0.030     2020-03-21 16:56:30Z
           - fix tests that can fail when there is already an installed module
