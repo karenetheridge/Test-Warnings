@@ -143,7 +143,13 @@ sub allowing_warnings() { $warnings_allowed }
 
 # call at any time to assert no (unexpected) warnings so far
 sub had_no_warnings(;$) {
-    _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+    if ($ENV{PERL_TEST_WARNINGS_ONLY_REPORT_WARNINGS}) {
+        $forbidden_warnings_found
+            and _builder->diag("Found $forbidden_warnings_found warnings but allowing them because PERL_TEST_WARNINGS_ONLY_REPORT_WARNINGS is set");
+    }
+    else {
+        _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
+    }
     if ($report_warnings and $forbidden_warnings_found) {
         _builder->diag("Got the following unexpected warnings:");
         for my $i (1 .. @collected_warnings) {
