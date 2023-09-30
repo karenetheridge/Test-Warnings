@@ -150,7 +150,8 @@ sub had_no_warnings(;$) {
     else {
         _builder->ok(!$forbidden_warnings_found, shift || 'no (unexpected) warnings');
     }
-    if ($report_warnings and $forbidden_warnings_found) {
+    if (($report_warnings or $ENV{PERL_TEST_WARNINGS_ONLY_REPORT_WARNINGS})
+          and $forbidden_warnings_found) {
         _builder->diag("Got the following unexpected warnings:");
         for my $i (1 .. @collected_warnings) {
             _builder->diag("  $i: $collected_warnings[ $i - 1 ]");
@@ -350,6 +351,15 @@ and rely on the end-of-tests check otherwise.
 
 When used, C<had_no_warnings()> will print all the unexempted warning content, in case it had been suppressed
 earlier by other captures (such as L<Test::Output/stderr_like> or L<Capture::Tiny/capture>).
+
+=head1 OTHER OPTIONS
+
+You can temporarily turn off the failure behaviour of this module, swapping it out for reporting
+(see C<:report_warnings> above) with:
+
+  $ENV{PERL_TEST_WARNINGS_ONLY_REPORT_WARNINGS} = 1;
+
+This can be useful for working around problematic modules that have warnings in newer Perl versions.
 
 =head1 CAVEATS
 
