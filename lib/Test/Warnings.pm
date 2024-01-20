@@ -40,7 +40,7 @@ sub import {
     __PACKAGE__->export_to_level(1, $class, keys %names);
 }
 
-# for testing this module only!
+# swap this out for testing this module only!
 my $tb;
 sub _builder(;$) {
     if (not @_) {
@@ -112,6 +112,27 @@ if (Test::Builder->can('done_testing')) {
         my $in_subtest_sub = $builder->can('in_subtest');
         if (not $no_end_test
             and not ($in_subtest_sub ? $builder->$in_subtest_sub : $builder->parent)) {
+            local $Test::Builder::Level = $Test::Builder::Level + 3;
+            had_no_warnings('no (unexpected) warnings (via done_testing)');
+            $done_testing_called = 1;
+        }
+
+        $orig->(@_);
+    };
+}
+
+if ($INC{'Test2/Tools/Basic.pm'}) {
+    # monkeypatch Test2::Tools::Basic::done_testing:
+    # check for any forbidden warnings, and record that we have done so
+    # so we do not check again via END
+
+    no strict 'refs';
+    my $orig = *{'Test2::Tools::Basic::done_testing'}{CODE};
+    no warnings 'redefine';
+    *{'Test2::Tools::Basic::done_testing'} = sub {
+        if (not $no_end_test) {
+            # we could use $ctx to create the test, which means not having to adjust Level,
+            # but then we need to make _builder Test2-compatible, which seems like a PITA.
             local $Test::Builder::Level = $Test::Builder::Level + 3;
             had_no_warnings('no (unexpected) warnings (via done_testing)');
             $done_testing_called = 1;
