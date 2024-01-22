@@ -420,6 +420,12 @@ regex (see F<examples/warning_like.t>).  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
 
+=head1 CAVEATS
+
+If you are using another module that sets its own warning handler (for example L<Devel::Confess> or
+L<diagnostics>) your results may be mixed, as those handlers will interfere with this module's
+ability to properly detect and capture warnings in their original form.
+
 =head1 TO DO (or: POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
 =over
