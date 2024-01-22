@@ -14,6 +14,8 @@ our @EXPORT_OK = qw(
     allow_warnings allowing_warnings
     had_no_warnings
     warnings warning
+    allow_patterns
+    disallow_patterns
 );
 our %EXPORT_TAGS = ( all => \@EXPORT_OK );
 
@@ -24,6 +26,7 @@ my $no_end_test;
 my $fail_on_warning;
 my $report_warnings;
 my @collected_warnings;
+my @allowed_patterns;
 
 sub import {
     my $class = shift @_;
@@ -53,7 +56,7 @@ sub _builder(;$) {
 
 my $_orig_warn_handler = $SIG{__WARN__};
 $SIG{__WARN__} = sub {
-    if ($warnings_allowed) {
+    if ($warnings_allowed or grep +($_[0] =~ $_), @allowed_patterns) {
         Test::Builder->new->note($_[0]);
     }
     else {
@@ -178,6 +181,34 @@ sub had_no_warnings(;$) {
             _builder->diag("  $i: $collected_warnings[ $i - 1 ]");
         }
     }
+}
+
+# pass one or more regexes (in qr format)
+# when called in void context, lasting effect is universal
+# otherwise, returns objects: when they go out of scope, the effect is removed
+#   (warning disallowed again).
+sub allow_patterns(@) {
+  push @allowed_patterns, @_;
+  return if not defined wantarray;
+  return [ map +Test::Warnings::TemporaryWarning->new($_), @_ ];
+}
+
+sub disallow_patterns(@) {
+  foreach my $pattern (@_) {
+    @allowed_patterns = grep +($_ ne $pattern), @allowed_patterns;
+  }
+}
+
+package # hide from PAUSE
+  Test::Warnings::TemporaryWarning;
+
+sub new {
+  my ($class, $pattern) = @_;
+  bless \$pattern, $class;
+}
+
+sub DESTROY {
+  Test::Warnings::disallow_patterns(${$_[0]});
 }
 
 1;
@@ -346,6 +377,24 @@ So instead, change your test to:
         qr/^this is a warning/,
         'got a warning from foo()',
     ) or diag 'got warning(s): ', explain($warning);
+
+=head2 allow_patterns
+
+  allow_patterns(qr/always allow this warning/);
+  {
+    my $temp = allow_patterns(qr/only allow in this scope/, qr/another temporary warning/);
+    ... stuff ...
+  }
+
+Given one or more regular expressions, in C<qr/.../> form, add them to the allow-list (warnings will
+be emitted with C<note> rather than triggering the warning handler). If the return value is saved in
+a local variable, the warning exemption will only be in effect for that local scope (the addition is
+reversed at the end of the scope); otherwise, the effect is global.
+
+=head2 disallow_patterns
+
+Given one or more regular expressions, in C<qr/.../> form, remove it from the allow-list. The
+pattern must exactly match a pattern previously provided to L</allow_patterns>.
 
 =head1 IMPORT OPTIONS
 

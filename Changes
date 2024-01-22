@@ -2,6 +2,8 @@ Revision history for Test-Warnings
 
 {{$NEXT}}
           - add Test2 compatibility in the test triggered by done_testing();
+          - new long-awaited feature (!!!) "allow_patterns", to either
+            temporarily or globally exempt particular warning patterns
 
 0.032     2023-09-30 23:36:50Z
           - new config variable, $ENV{PERL_TEST_WARNINGS_ONLY_REPORT_WARNINGS},
