@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.032
+version 0.033
 
 =head1 SYNOPSIS
 
@@ -172,6 +172,24 @@ So instead, change your test to:
         'got a warning from foo()',
     ) or diag 'got warning(s): ', explain($warning);
 
+=head2 allow_patterns
+
+  allow_patterns(qr/always allow this warning/);
+  {
+    my $temp = allow_patterns(qr/only allow in this scope/, qr/another temporary warning/);
+    ... stuff ...
+  }
+
+Given one or more regular expressions, in C<qr/.../> form, add them to the allow-list (warnings will
+be emitted with C<note> rather than triggering the warning handler). If the return value is saved in
+a local variable, the warning exemption will only be in effect for that local scope (the addition is
+reversed at the end of the scope); otherwise, the effect is global.
+
+=head2 disallow_patterns
+
+Given one or more regular expressions, in C<qr/.../> form, remove it from the allow-list. The
+pattern must exactly match a pattern previously provided to L</allow_patterns>.
+
 =head1 IMPORT OPTIONS
 
 =head2 C<:all>
@@ -244,6 +262,12 @@ the test name, "foo appears in the warning" will itself be matched by the
 regex (see F<examples/warning_like.t>).  Instead, write this:
 
   like( warning { ... }, qr/foo/, 'foo appears in the warning' );
+
+=head1 CAVEATS
+
+If you are using another module that sets its own warning handler (for example L<Devel::Confess> or
+L<diagnostics>) your results may be mixed, as those handlers will interfere with this module's
+ability to properly detect and capture warnings in their original form.
 
 =head1 TO DO (or: POSSIBLE FEATURES COMING IN FUTURE RELEASES)
 
