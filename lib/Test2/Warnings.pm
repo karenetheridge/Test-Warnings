@@ -5,7 +5,7 @@ package Test2::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings Test2
 
-our $VERSION = '0.034';
+our $VERSION = '0.035';
 
 use base qw(Exporter);
 use Import::Into;

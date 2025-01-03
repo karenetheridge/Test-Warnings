@@ -5,7 +5,7 @@ package Test::Warnings;
 # ABSTRACT: Test for warnings and the lack of them
 # KEYWORDS: testing tests warnings
 
-our $VERSION = '0.034';
+our $VERSION = '0.035';
 
 use parent 'Exporter';
 use Test::Builder;
