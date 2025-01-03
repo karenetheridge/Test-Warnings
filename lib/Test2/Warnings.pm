@@ -8,19 +8,10 @@ package Test2::Warnings;
 our $VERSION = '0.037';
 
 use base qw(Exporter);
-use Import::Into;
 use Test::Warnings;
 
 sub import {
-  {
-    my $callpkg = caller(1);
-    no strict 'refs';
-    no warnings 'once';
-    undef *{$callpkg.'::done_testing'} if defined $callpkg and *{$callpkg.'::done_testing'}{CODE};
-  }
-
-  shift->export_to_level(1);
-  Test::Warnings->import::into(1);
+  goto \&Test::Warnings::import;
 }
 
 1;
@@ -63,11 +54,5 @@ See L<Test::Warnings> for full documentation.
 
 For now, this is a simple wrapper around L<Test::Warnings>, but there is a plan to make this a full
 port and eject all the old L<Test::Builder> compatibility and use the Test2 suite correctly.
-
-=head1 CAVEATS
-
-This module depends on L<Import::Into>, which is not a prerequisite of the distribution because it
-aims to be core-only. When it is moved to its own distribution the prerequisite will be declared
-normally.
 
 =cut

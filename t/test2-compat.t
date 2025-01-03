@@ -5,7 +5,6 @@ BEGIN {
   $^W = 1;
   eval { +require Test2::V0; 1 } or do { print "1..0 # SKIP Need Test2::V0\n"; exit };
   Test2::V0->import;
-  eval { +require Import::Into; 1 } or do { print "1..0 # SKIP Need Import::Into\n"; exit };
 }
 
 use Test2::Warnings;
