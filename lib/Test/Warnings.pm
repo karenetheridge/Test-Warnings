@@ -46,7 +46,7 @@ sub import {
         my $callpkg = caller(1);
         no strict 'refs';
         no warnings 'once';
-        undef *{$callpkg.'::done_testing'} if *{$callpkg.'::done_testing'}{CODE};
+        undef *{$callpkg.'::done_testing'} if defined $callpkg and *{$callpkg.'::done_testing'}{CODE};
     }
 
     __PACKAGE__->export_to_level(1, $class, keys %names);
