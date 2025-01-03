@@ -1,6 +1,8 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - avoid redefinition warnings when $^W is enabled in tests
+            (RT#158297)
 
 0.035     2025-01-03 17:47:24Z
           - allow tests to pass even when Import::Into is not installed

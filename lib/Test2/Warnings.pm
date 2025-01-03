@@ -12,6 +12,13 @@ use Import::Into;
 use Test::Warnings;
 
 sub import {
+  {
+    my $callpkg = caller(1);
+    no strict 'refs';
+    no warnings 'once';
+    undef *{$callpkg.'::done_testing'} if *{$callpkg.'::done_testing'}{CODE};
+  }
+
   shift->export_to_level(1);
   Test::Warnings->import::into(1);
 }
