@@ -57,4 +57,10 @@ See L<Test::Warnings> for full documentation.
 For now, this is a simple wrapper around L<Test::Warnings>, but there is a plan to make this a full
 port and eject all the old L<Test::Builder> compatibility and use the Test2 suite correctly.
 
+=head1 CAVEATS
+
+This module depends on L<Import::Into>, which is not a prerequisite of the distribution because it
+aims to be core-only. When it is moved to its own distribution the prerequisite will be declared
+normally.
+
 =cut
