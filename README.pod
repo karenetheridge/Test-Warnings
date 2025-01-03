@@ -8,7 +8,7 @@ Test::Warnings - Test for warnings and the lack of them
 
 =head1 VERSION
 
-version 0.033
+version 0.034
 
 =head1 SYNOPSIS
 
@@ -68,6 +68,8 @@ It can also be used as a replacement for L<Test::Warn>, if you wish to test
 the content of expected warnings; read on to find out how.
 
 =head1 FUNCTIONS
+
+=for Pod::Coverage done_testing
 
 The following functions are available for import (not included by default; you
 can also get all of them by importing the tag C<:all>):
@@ -338,7 +340,7 @@ Karen Etheridge <ether@cpan.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Graham Knop A. Sinan Unur Leon Timmermans Tina Mueller
+=for stopwords Graham Knop Tina Müller A. Sinan Unur Leon Timmermans
 
 =over 4
 
@@ -348,15 +350,15 @@ Graham Knop <haarg@haarg.org>
 
 =item *
 
+Tina Müller <cpan2@tinita.de>
+
+=item *
+
 A. Sinan Unur <nanis@cpan.org>
 
 =item *
 
 Leon Timmermans <fawaka@gmail.com>
-
-=item *
-
-Tina Mueller <cpan2@tinita.de>
 
 =back
 

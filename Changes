@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.034     2025-01-03 02:46:29Z
           - fix Test2 compability for done_testing()
           - Test2::Warnings added as a simple wrapper (for now)
 
