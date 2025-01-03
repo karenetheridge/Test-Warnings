@@ -1,6 +1,6 @@
 Revision history for Test-Warnings
 
-{{$NEXT}}
+0.035     2025-01-03 17:47:24Z
           - allow tests to pass even when Import::Into is not installed
           - add backcompat shim for cases where Test::More is loaded in tests
             after Test::Warnings
