@@ -1,5 +1,7 @@
 Revision history for Test-Warnings
 
+{{$NEXT}}
+
 0.036     2025-01-03 18:30:28Z
           - avoid redefinition warnings when $^W is enabled in tests
             (RT#158297)
