@@ -43,10 +43,10 @@ sub import {
     delete @names{qw(:no_end_test :fail_on_warning :report_warnings)};
 
     {
-        my $callpkg = caller(1);
+        my $callpkg = caller(0);
         no strict 'refs';
         no warnings 'once';
-        undef *{$callpkg.'::done_testing'} if defined $callpkg and *{$callpkg.'::done_testing'}{CODE};
+        undef *{$callpkg.'::done_testing'} if *{$callpkg.'::done_testing'}{CODE};
     }
 
     __PACKAGE__->export_to_level(1, $class, keys %names);
