@@ -2,6 +2,8 @@ Revision history for Test-Warnings
 
 {{$NEXT}}
           - allow tests to pass even when Import::Into is not installed
+          - add backcompat shim for cases where Test::More is loaded in tests
+            after Test::Warnings
 
 0.034     2025-01-03 02:46:29Z
           - fix Test2 compability for done_testing()
