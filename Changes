@@ -1,6 +1,7 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - fix Test2 compability for done_testing()
 
 0.033     2024-01-23 03:31:29Z
           - add Test2 compatibility in the test triggered by done_testing();

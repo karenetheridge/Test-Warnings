@@ -17,7 +17,8 @@ our @EXPORT_OK = qw(
     allow_patterns
     disallow_patterns
 );
-our %EXPORT_TAGS = ( all => \@EXPORT_OK );
+our @EXPORT = qw(done_testing);
+our %EXPORT_TAGS = ( all => [ @EXPORT_OK, @EXPORT ] );
 
 my $warnings_allowed;
 my $forbidden_warnings_found;
@@ -31,7 +32,7 @@ my @allowed_patterns;
 sub import {
     my $class = shift @_;
 
-    my %names; @names{@_} = ();
+    my %names; @names{@_, 'done_testing'} = ();
     # END block will check for this status
     $no_end_test = exists $names{':no_end_test'};
     # __WARN__ handler will check for this status
@@ -101,15 +102,21 @@ sub warning(&) {
     return @warnings == 1 ? $warnings[0] : \@warnings;
 }
 
-if (Test::Builder->can('done_testing')) {
-    # monkeypatch Test::Builder::done_testing:
-    # check for any forbidden warnings, and record that we have done so
-    # so we do not check again via END
+# check for any forbidden warnings, and record that we have done so
+# so we do not check again via END
+sub done_testing {
+    if (Test2::Tools::Basic->can('done_testing')) {
+        if (not $no_end_test) {
+            # we could use $ctx to create the test, which means not having to adjust Level,
+            # but then we need to make _builder Test2-compatible, which seems like a PITA.
+            local $Test::Builder::Level = $Test::Builder::Level + 3;
+            had_no_warnings('no (unexpected) warnings (via done_testing)');
+            $done_testing_called = 1;
+        }
 
-    no strict 'refs';
-    my $orig = *{'Test::Builder::done_testing'}{CODE};
-    no warnings 'redefine';
-    *{'Test::Builder::done_testing'} = sub {
+        Test2::Tools::Basic::done_testing(@_);
+    }
+    elsif (Test::Builder->can('done_testing')) {
         # only do this at the end of all tests, not at the end of a subtest
         my $builder = _builder;
         my $in_subtest_sub = $builder->can('in_subtest');
@@ -120,29 +127,11 @@ if (Test::Builder->can('done_testing')) {
             $done_testing_called = 1;
         }
 
-        $orig->(@_);
-    };
-}
-
-if ($INC{'Test2/Tools/Basic.pm'}) {
-    # monkeypatch Test2::Tools::Basic::done_testing:
-    # check for any forbidden warnings, and record that we have done so
-    # so we do not check again via END
-
-    no strict 'refs';
-    my $orig = *{'Test2::Tools::Basic::done_testing'}{CODE};
-    no warnings 'redefine';
-    *{'Test2::Tools::Basic::done_testing'} = sub {
-        if (not $no_end_test) {
-            # we could use $ctx to create the test, which means not having to adjust Level,
-            # but then we need to make _builder Test2-compatible, which seems like a PITA.
-            local $Test::Builder::Level = $Test::Builder::Level + 3;
-            had_no_warnings('no (unexpected) warnings (via done_testing)');
-            $done_testing_called = 1;
-        }
-
-        $orig->(@_);
-    };
+        _builder->done_testing(@_);
+    }
+    else {
+        die 'no done_testing available via a Test module';
+    }
 }
 
 END {
@@ -274,6 +263,8 @@ It can also be used as a replacement for L<Test::Warn>, if you wish to test
 the content of expected warnings; read on to find out how.
 
 =head1 FUNCTIONS
+
+=for Pod::Coverage done_testing
 
 The following functions are available for import (not included by default; you
 can also get all of them by importing the tag C<:all>):
