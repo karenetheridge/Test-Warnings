@@ -1,5 +1,7 @@
 Revision history for Test-Warnings
 
+{{$NEXT}}
+
 0.037     2025-01-05 20:38:16Z
           - remove unneeded use of Import::Into
           - fix tests that invoke Test::Warnings->import directly
