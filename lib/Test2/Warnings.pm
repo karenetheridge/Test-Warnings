@@ -7,7 +7,7 @@ package Test2::Warnings;
 
 our $VERSION = '0.037';
 
-use base qw(Exporter);
+use parent 'Exporter';
 use Test::Warnings;
 
 sub import {
