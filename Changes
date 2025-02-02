@@ -1,6 +1,8 @@
 Revision history for Test-Warnings
 
 {{$NEXT}}
+          - no longer swap out done_testing method if :no_end_test is
+            configured
 
 0.037     2025-01-05 20:38:16Z
           - remove unneeded use of Import::Into

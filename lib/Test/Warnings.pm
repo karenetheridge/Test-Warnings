@@ -32,7 +32,7 @@ my @allowed_patterns;
 sub import {
     my $class = shift @_;
 
-    my %names; @names{@_, 'done_testing'} = ();
+    my %names; @names{@_} = ();
     # END block will check for this status
     $no_end_test = exists $names{':no_end_test'};
     # __WARN__ handler will check for this status
@@ -42,7 +42,8 @@ sub import {
 
     delete @names{qw(:no_end_test :fail_on_warning :report_warnings)};
 
-    {
+    if (not $no_end_test) {
+        $names{done_testing} = ();
         my $callpkg = caller(0);
         no strict 'refs';
         no warnings 'once';
